@@ -75,7 +75,7 @@ while(stuff < 100):
     elif(result=="Keep It Full!"):
         print "Never leave the summoners platform will more empty inventory spaces then when you got there."
     elif(result=="Max Lead"):
-        print "You may not push towers when the team is 5 or more kills ahead"
+        print "You may not push towers while your team is 5 or more kills ahead"
     elif(result=="Deadly Aces"):
         print "If you score an ace, all alive players MUST rush the enemy summoners platform and die there if they reach it."
     elif(result=="Unique Shoes"):
