@@ -65,7 +65,9 @@ choices = [ "All Yordle",
             "Follow the Leader",
             "Opposite Day",
             "Low Mobility"]
-stuff = 1
+
+
+
 while(1): 
     result = random.choice(choices)
     print "Rules:",result
