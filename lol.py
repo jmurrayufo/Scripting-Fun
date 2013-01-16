@@ -66,8 +66,9 @@ choices = [ "All Yordle",
             "Opposite Day",
             "Low Mobility"]
 stuff = 1
-while(stuff < 5): 
+while(stuff <= 5): 
     result = random.choice(choices)
+    result = "Jungle Fever"
     print "Rules:",result
     if(result=="Alphabet"):
         print "You must spell something out!"
@@ -87,16 +88,20 @@ while(stuff < 5):
     elif(result=="Unique Shoes"):
         print "Everyone must have a unique level 2+ set of boots, no duplicates!"
     elif(result=="Follow the Leader"):
-        print "After the %s minute mark, everyone must follow player number %s" %(random.number(9:21),random.number(0:6))
+        player = [1,2,3,4,5]
+        minmark = [10,11,12,13,14,15,16,17,18,19,20]
+        print "After the %d minute mark, everyone must follow player number %d" %(random.choice(minmark),random.choice(player))
     elif(result=="Opposite Day"):
         print "Randomly select a champion and build them for the opposite role they usually take"
     elif(result=="Low Mobility"):
         print "No flash, No ghost, No champions with gap closers/escapes"
     elif(result=="Jungle Fever"):
-        jungle = random.choice(0:11)
-        if jungle >= 8
+        junglelist = [1,2,3,4,5,6,7,8,9,10]
+        jungle = random.choice(junglelist)
+        if jungle >=8:
             print "Champions can only leave the jungle while everything in it is dead... in both jungles"
-        print "Champions can only leave your jungle while everything in it is dead"
-    raw_input("you may reroll %s times..." %(5-stuff))
+        else:
+            print "Champions can only leave your jungle while everything in it is dead"
+    raw_input("you may reroll %d times..." %(5-stuff))
     stuff += 1
     continue
