@@ -59,25 +59,28 @@ choices = [ "All Yordle",
             "Max Lead",
             "Deadly Aces",
             "Unique Shoes"]
- 
-result = random.choice(choices)
 
- 
-print "Rules:",result
-if(result=="Alphabet"):
-    print "You must spell something out!"
-elif(result=="Fill Dorians"):
-    print "Only boots/dorians items until inventory is full, then may proceed with normal build"
-elif(result=="Pick Item"):
-    Item = random.choice(items)        
-    print "Everyone MUST build a(n) %s by %d minutes."%(Item[0], Item[1]/96+1+1.5+3)
-elif(result=="SwapAKill"):
-    print "Every time you get a kill, you you must swap to a new lane (your choice)"
-elif(result=="Keep It Full!"):
-    print "Never leave the summoners platform will more empty inventory spaces then when you got there."
-elif(result=="Max Lead"):
-    print "You may not push towers when the team is 5 or more kills ahead"
-elif(result=="Deadly Aces"):
-    print "If you score an ace, all alive players MUST rush the enemy summoners platform and die there if they reach it."
-elif(result=="Unique Shoes"):
-    print "Everyone must have a unique level 2+ set of boots, no duplicates!"
+while(1): 
+    result = random.choice(choices)
+    print "Rules:",result
+    if(result=="Alphabet"):
+        print "You must spell something out!"
+    elif(result=="Fill Dorians"):
+        print "Only boots/dorians items until inventory is full, then may proceed with normal build"
+    elif(result=="Pick Item"):
+        Item = random.choice(items)        
+        print "Everyone MUST build a(n) %s by %d minutes."%(Item[0], Item[1]/96+1+1.5+3)
+    elif(result=="SwapAKill"):
+        print "Every time you get a kill, you you must swap to a new lane (your choice)"
+    elif(result=="Keep It Full!"):
+        print "Never leave the summoners platform will more empty inventory spaces then when you got there."
+    elif(result=="Max Lead"):
+        print "You may not push towers when the team is 5 or more kills ahead"
+    elif(result=="Deadly Aces"):
+        print "If you score an ace, all alive players MUST rush the enemy summoners platform and die there if they reach it."
+    elif(result=="Unique Shoes"):
+        print "Everyone must have a unique level 2+ set of boots, no duplicates!"
+    stuff = input("Press any key to reroll...")
+    if stuff:
+        continue
+    
