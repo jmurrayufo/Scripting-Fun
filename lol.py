@@ -66,7 +66,7 @@ choices = [ "All Yordle",
             "Opposite Day",
             "Low Mobility"]
 stuff = 1
-while(stuff <= 5): 
+while(1): 
     result = random.choice(choices)
     print "Rules:",result
     if(result=="Alphabet"):
@@ -101,6 +101,4 @@ while(stuff <= 5):
             print "Champions can only leave the jungle while everything in it is dead... in both jungles"
         else:
             print "Champions can only leave your jungle while everything in it is dead"
-    print "\nYou may reroll a new choice %d times..."%(5-stuff)
     raw_input("Press enter to reroll, or CTRL+C to exit\n")
-    stuff += 1
