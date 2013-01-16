@@ -59,8 +59,8 @@ choices = [ "All Yordle",
             "Max Lead",
             "Deadly Aces",
             "Unique Shoes"]
-
-while(1): 
+stuff = 1
+while(stuff < 100): 
     result = random.choice(choices)
     print "Rules:",result
     if(result=="Alphabet"):
@@ -80,7 +80,6 @@ while(1):
         print "If you score an ace, all alive players MUST rush the enemy summoners platform and die there if they reach it."
     elif(result=="Unique Shoes"):
         print "Everyone must have a unique level 2+ set of boots, no duplicates!"
-    stuff = input("Press any key to reroll...")
-    if stuff:
-        continue
-    
+    raw_input("you may reroll %s times..." %(100-stuff))
+    stuff += 1
+    continue
