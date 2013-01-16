@@ -62,7 +62,6 @@ choices = [ "All Yordle",
  
 result = random.choice(choices)
 
-result="Pick Item"
  
 print "Rules:",result
 if(result=="Alphabet"):
