@@ -68,7 +68,6 @@ choices = [ "All Yordle",
 stuff = 1
 while(stuff <= 5): 
     result = random.choice(choices)
-    result = "Jungle Fever"
     print "Rules:",result
     if(result=="Alphabet"):
         print "You must spell something out!"
