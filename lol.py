@@ -1,13 +1,13 @@
 import random
  
 items = [
-        ["an Abyssal Scepter",                 2650],
-        ["an Aegis of the Legion",             2150],
-        ["an Atma's Impaler",                  2300],
+        ["an Abyssal Scepter",                2650],
+        ["an Aegis of the Legion",            2150],
+        ["an Atma's Impaler",                 2300],
         ["a Banner of Command",               2400],
         ["a Banshee's veil",                  2500],
         ["a Bilgewater Cultlass",             1925],
-        ["an Executioner's calling",           1900],
+        ["an Executioner's calling",          1900],
         ["a Guardian Angel",                  2600],
         ["a Guinsoo's Rageblade",             2600],
         ["a Hextech Sweeper(dominion/TT)",    1920],
@@ -19,8 +19,8 @@ items = [
         ["a Mikael's Crucible",               2200],
         ["a Morellonomicon",                  2200],
         ["a Nashor's tooth",                  2500],
-        ["an Odyn's veil(Dominion/TT)",        2610],
-        ["an Overlord's bloodmail",            2455],
+        ["an Odyn's veil(Dominion/TT)",       2610],
+        ["an Overlord's bloodmail",           2455],
         ["a Rod of Ages",                     2800],
         ["a Shard of True Ice",               1700],
         ["a Shurelya's Reverie",              2100],
@@ -31,7 +31,7 @@ items = [
         ["a Statikk Shiv",                    2500],
         ["a Sunfire Cape",                    2500],
         ["a Sword of the Divine",             2200],
-        ["a Brutalizer",                  1337],
+        ["a Brutalizer",                      1337],
         ["a Thornmail",                       2200],
         ["a Tiamat",                          2300],
         ["a Twin Shadows",                    1900],
@@ -101,6 +101,6 @@ while(stuff <= 5):
             print "Champions can only leave the jungle while everything in it is dead... in both jungles"
         else:
             print "Champions can only leave your jungle while everything in it is dead"
-    raw_input("you may reroll %d times..." %(5-stuff))
+    print "\nYou may reroll a new choice %d times..."%(5-stuff)
+    raw_input("Press enter to reroll, or CTRL+C to exit\n")
     stuff += 1
-    continue
