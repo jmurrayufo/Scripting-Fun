@@ -58,7 +58,8 @@ choices = [ "All Yordle",
             "Keep It Full!",
             "Max Lead",
             "Deadly Aces",
-            "Unique Shoes"]
+            "Unique Shoes",
+            "Follow the Leader"]
 stuff = 1
 while(stuff < 5): 
     result = random.choice(choices)
@@ -80,6 +81,8 @@ while(stuff < 5):
         print "If you score an ace, all alive players MUST rush the enemy summoners platform and die there if they reach it."
     elif(result=="Unique Shoes"):
         print "Everyone must have a unique level 2+ set of boots, no duplicates!"
+    elif(result=="Follow the Leader"):
+        print "After the %s minute mark, everyone must follow player number %s" %(random.number(11:21),random.number(2:6))
     raw_input("you may reroll %s times..." %(5-stuff))
     stuff += 1
     continue
