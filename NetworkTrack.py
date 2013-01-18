@@ -3,6 +3,10 @@ import time
 
 # psutil found @ http://code.google.com/p/psutil/
 
+class DataStore:
+   sent=0
+   recv=0
+
 def PrintData(bytes,typeStr="Sent",time=-1):
    if(bytes < 2**10):
       print "%s: %4d"%(typeStr,bytes),
@@ -26,12 +30,26 @@ times = [1,5,15]
 pTimes=list()
 pTimes.append((time.time(),psutil.network_io_counters()))
 timesLastUpdate=time.time()
-
+totals = DataStore()
 pFirst=psutil.network_io_counters()
 pLast=psutil.network_io_counters()
 
+print totals.sent
+print totals.recv
+
 while(1):
    p=psutil.network_io_counters()
+
+   # Add up new data
+   if p.bytes_sent >= pLast.bytes_sent:
+      totals.sent += p.bytes_sent - pLast.bytes_sent
+   else:
+      totals.sent += p.bytes_sent
+      
+   if p.bytes_recv >= pLast.bytes_recv:
+      totals.recv += p.bytes_recv - pLast.bytes_recv
+   else:
+      totals.recv += p.bytes_recv
 
    print "\n\n"
    print "<Totals>"
