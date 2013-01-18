@@ -27,11 +27,12 @@ start = time.time()
 # Minutes to keep track of as well
 times = [1,5,15]
 
-pTimes=list()
-pTimes.append((time.time(),psutil.network_io_counters()))
+
 timesLastUpdate=time.time()
 totals = DataStore()
 totalsLast = DataStore()
+pTimes=list()
+pTimes.append((time.time(),(totals.sent,totals.recv)))
 pLast=psutil.network_io_counters()
 
 while(1):
@@ -63,21 +64,22 @@ while(1):
    pLast = psutil.network_io_counters()
 
    # Append current (time, data)
-   pTimes.append((time.time(),psutil.network_io_counters()))
+   #pTimes.append((time.time(),psutil.network_io_counters()))
+   pTimes.append((time.time(),(totals.sent,totals.recv)))
 
    for i in range(len(times)):
       for y in reversed(range(len(pTimes))):
          if(pTimes[y][0] <= time.time() - times[i]*60):
             print "\n<Last %dm>"%(times[i])
-            PrintData(p.bytes_sent - pTimes[y][1].bytes_sent,"Sent",time.time()-pTimes[y][0])
-            PrintData(p.bytes_recv - pTimes[y][1].bytes_recv,"Recv",time.time()-pTimes[y][0])
+            PrintData(totals.sent - pTimes[y][1][0],"Sent",time.time()-pTimes[y][0])
+            PrintData(totals.recv - pTimes[y][1][1],"Recv",time.time()-pTimes[y][0])
             # We found the first one that fits, don't check the rest!
             break
       else:
          print "\n<Last %.1fm>"%((time.time()-pTimes[0][0])/60)
          print "Full range not yet avaliable..."
-         PrintData(p.bytes_sent - pTimes[0][1].bytes_sent,"Sent",time.time()-pTimes[0][0])  
-         PrintData(p.bytes_recv - pTimes[0][1].bytes_recv,"Recv",time.time()-pTimes[0][0])  
+         PrintData(totals.sent - pTimes[0][1][0],"Sent",time.time()-pTimes[0][0])  
+         PrintData(totals.recv - pTimes[0][1][1],"Recv",time.time()-pTimes[0][0])  
          # We dont need to print out copies of this, break from the i loop
          break  
    if(pTimes[0][0] < time.time() - max(times)*60):
