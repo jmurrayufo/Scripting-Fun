@@ -4,6 +4,7 @@ import curses
 import curses.wrapper
 
 # psutil found @ http://code.google.com/p/psutil/
+# curses found @ http://www.lfd.uci.edu/~gohlke/pythonlibs/
 
 class DataStore:
    sent=0
