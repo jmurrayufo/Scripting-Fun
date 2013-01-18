@@ -10,20 +10,24 @@ class DataStore:
    recv=0
 
 def PrintData(scr,bytes,typeStr="Sent",time=-1):
+   (y,x)=scr.getyx()
+   scr.move(y+1,1)
    if(bytes < 2**10):
-      print "%s: %4d"%(typeStr,bytes),
+      scr.addstr("%s: %4d          "%(typeStr,bytes))
    elif(bytes < 2**20):
-      print "%s: %8.3f (KiB)"%(typeStr,bytes/float(2**10)),
+      scr.addstr("%s: %8.3f (KiB)"%(typeStr,bytes/float(2**10)))
    elif(bytes < 2**30):
-      print "%s: %8.3f (MiB)"%(typeStr,bytes/float(2**20)),
+      scr.addstr("%s: %8.3f (MiB)"%(typeStr,bytes/float(2**20)))
    else:
-      print "%s: %8.3f (GiB)"%(typeStr,bytes/float(2**30)),
+      scr.addstr("%s: %8.3f (GiB)"%(typeStr,bytes/float(2**30)))
+
    if(time>0):
-      print "(%7.3f KiB/s)" %((bytes/(float(2**10))/time))
-   else:
-      print
+      scr.addstr(" (%7.3f KiB/s)" %((bytes/(float(2**10))/time)))
 
 def main(scr):
+   curses.curs_set(0)
+   scr.nodelay(1)
+
    delay = 1
    start = time.time()
 
@@ -39,8 +43,21 @@ def main(scr):
    pLast=psutil.network_io_counters()
 
    while(1):
+      scr.clear()
+      scr.border()
+      scr.move(0,0)
 
-      stdscr.clear()
+      quit = 0
+      tmp = scr.getch()
+      while(tmp  != -1):
+         if(tmp == 113):
+            quit = 1
+            break
+         tmp=scr.getch()
+
+      if(quit == 1):
+         break
+
       p=psutil.network_io_counters()
 
       # Add up new data
@@ -55,13 +72,16 @@ def main(scr):
       else:
          # Bytes rolled over, just add the current amount
          totals.recv += p.bytes_recv
-
-      print "\n\n"
-      print "<Totals>"
+      
+      (y,x)=scr.getyx()
+      scr.move(y+1,1)
+      scr.addstr("<Totals>")
       PrintData(scr,totals.sent,"Sent")
       PrintData(scr,totals.recv,"Recv")
 
-      print "\n<Last %ds>"%(delay)
+      (y,x)=scr.getyx()
+      scr.move(y+2,1)
+      scr.addstr("<Last %ds>"%(delay))
       PrintData(scr,totals.sent - totalsLast.sent,"Sent")
       PrintData(scr,totals.recv - totalsLast.recv,"Recv")
       totalsLast.sent = totals.sent
@@ -75,21 +95,26 @@ def main(scr):
       for i in range(len(times)):
          for y in reversed(range(len(pTimes))):
             if(pTimes[y][0] <= time.time() - times[i]*60):
-               print "\n<Last %dm>"%(times[i])
+               (y,x)=scr.getyx()
+               scr.move(y+2,1)
+               scr.addstr("<Last %dm>"%(times[i]))
                PrintData(scr,totals.sent - pTimes[y][1][0],"Sent",time.time()-pTimes[y][0])
                PrintData(scr,totals.recv - pTimes[y][1][1],"Recv",time.time()-pTimes[y][0])
                # We found the first one that fits, don't check the rest!
                break
          else:
-            print "\n<Last %.1fm>"%((time.time()-pTimes[0][0])/60)
-            print "Full range not yet avaliable..."
+            (y,x)=scr.getyx()
+            scr.move(y+2,1)
+            scr.addstr("<Last %.1fm>"%((time.time()-pTimes[0][0])/60))
+            scr.move(y+3,1)
+            scr.addstr("Full range not yet avaliable...")
             PrintData(scr,totals.sent - pTimes[0][1][0],"Sent",time.time()-pTimes[0][0])  
             PrintData(scr,totals.recv - pTimes[0][1][1],"Recv",time.time()-pTimes[0][0])  
             # We dont need to print out copies of this, break from the i loop
             break  
       if(pTimes[0][0] < time.time() - max(times)*60):
          pTimes.remove(pTimes[0])
-
+      scr.refresh()
       time.sleep(delay)
 
 curses.wrapper(main)
