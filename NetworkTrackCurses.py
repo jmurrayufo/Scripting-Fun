@@ -22,7 +22,7 @@ def PrintData(scr,bytes,typeStr="Sent",time=-1):
       scr.addstr("%s: %8.3f (GiB)"%(typeStr,bytes/float(2**30)))
 
    if(time>0):
-      scr.addstr(" (%7.3f KiB/s)" %((bytes/(float(2**10))/time)))
+      scr.addstr(" (%6.3f KiB/s)" %((bytes/(float(2**10))/time)))
 
 def main(scr):
    curses.curs_set(0)
