@@ -31,11 +31,8 @@ pTimes=list()
 pTimes.append((time.time(),psutil.network_io_counters()))
 timesLastUpdate=time.time()
 totals = DataStore()
-pFirst=psutil.network_io_counters()
+totalsLast = DataStore()
 pLast=psutil.network_io_counters()
-
-print totals.sent
-print totals.recv
 
 while(1):
    p=psutil.network_io_counters()
@@ -44,27 +41,26 @@ while(1):
    if p.bytes_sent >= pLast.bytes_sent:
       totals.sent += p.bytes_sent - pLast.bytes_sent
    else:
+      # Bytes rolled over, just add the current amount
       totals.sent += p.bytes_sent
-      
+
    if p.bytes_recv >= pLast.bytes_recv:
       totals.recv += p.bytes_recv - pLast.bytes_recv
    else:
+      # Bytes rolled over, just add the current amount
       totals.recv += p.bytes_recv
 
    print "\n\n"
    print "<Totals>"
-   PrintData(p.bytes_sent,"Sent")
-   PrintData(p.bytes_recv,"Recv")
+   PrintData(totals.sent,"Sent")
+   PrintData(totals.recv,"Recv")
 
    print "\n<Last %ds>"%(delay)
-   PrintData(p.bytes_sent - pLast.bytes_sent,"Sent")
-   PrintData(p.bytes_recv - pLast.bytes_recv,"Recv")
-   pLast=psutil.network_io_counters()
-
-   print "\n<Last %ds>"%(time.time()-start)
-   PrintData(p.bytes_sent - pFirst.bytes_sent,"Sent",time.time()-start)
-   PrintData(p.bytes_recv - pFirst.bytes_recv,"Recv",time.time()-start)
-   pLast=psutil.network_io_counters()
+   PrintData(totals.sent - totalsLast.sent,"Sent")
+   PrintData(totals.recv - totalsLast.recv,"Recv")
+   totalsLast.sent = totals.sent
+   totalsLast.recv = totals.recv
+   pLast = psutil.network_io_counters()
 
    # Append current (time, data)
    pTimes.append((time.time(),psutil.network_io_counters()))
