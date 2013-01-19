@@ -96,8 +96,8 @@ def main(scr):
       for i in range(len(times)):
          for y in reversed(range(len(pTimes))):
             if(pTimes[y][0] <= time.time() - times[i]*60):
-               (y,x)=scr.getyx()
-               scr.move(y+2,1)
+               (y1,x1)=scr.getyx()
+               scr.move(y1+2,1)
                scr.addstr("<Last %dm>"%(times[i]))
                PrintData(scr,totals.sent - pTimes[y][1][0],"Sent",time.time()-pTimes[y][0])
                PrintData(scr,totals.recv - pTimes[y][1][1],"Recv",time.time()-pTimes[y][0])
@@ -113,7 +113,7 @@ def main(scr):
             PrintData(scr,totals.recv - pTimes[0][1][1],"Recv",time.time()-pTimes[0][0])  
             # We dont need to print out copies of this, break from the i loop
             break  
-      if(pTimes[0][0] < time.time() - max(times)*60):
+      while(pTimes[0][0] < time.time() - max(times)*60):
          pTimes.remove(pTimes[0])
       scr.refresh()
       time.sleep(delay)

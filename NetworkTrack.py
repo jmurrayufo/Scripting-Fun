@@ -82,7 +82,7 @@ while(1):
          PrintData(totals.recv - pTimes[0][1][1],"Recv",time.time()-pTimes[0][0])  
          # We dont need to print out copies of this, break from the i loop
          break  
-   if(pTimes[0][0] < time.time() - max(times)*60):
+   while(pTimes[0][0] < time.time() - max(times)*60):
       pTimes.remove(pTimes[0])
 
 
