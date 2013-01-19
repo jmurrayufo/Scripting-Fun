@@ -65,8 +65,21 @@ choices = [ "All Yordle",
             "Follow the Leader",
             "Opposite Day",
             "Low Mobility"]
+
+# Currently empty class to deal with champions
+class Champion():
+    Name="BLANK"
+    Type="BLANK"
+    HP=0
+    AD=0
+    AP=0
+    DIF=0
+    Date=""
+    IP=0
+    RP=0
+
 # Name, Type, HP, Attack, Spells, Difficulty, Date, IP, RP
-champions =[  
+champions =[
 ["Ahri"        ,"Mage",     40,  30,  80,  80,  "2011-12-14", 6300, 975],
 ["Akali"       ,"Assassin", 30,  50,  80,  60,  "2010-05-11", 3150, 790],
 ["Alistar"     ,"Tank",     90,  60,  50,  80,  "2009-02-21", 1350, 585],
