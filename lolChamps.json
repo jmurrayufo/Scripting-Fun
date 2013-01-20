@@ -1,0 +1,1092 @@
+{
+    "Ahri": {
+        "Type": "Mage",
+        "HP": 40,  
+        "Attack": 30,  
+        "Spells": 80,  
+        "Difficulty": 80,  
+        "Date": "2011-12-14", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Akali": {
+        "Type": "Assassin",
+        "HP": 30,  
+        "Attack": 50,  
+        "Spells": 80,  
+        "Difficulty": 60,  
+        "Date": "2010-05-11", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Alistar": {
+        "Type": "Tank",
+        "HP": 90,  
+        "Attack": 60,  
+        "Spells": 50,  
+        "Difficulty": 80,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Amumu": {
+        "Type": "Tank",
+        "HP": 60,  
+        "Attack": 20,  
+        "Spells": 80,  
+        "Difficulty": 40,  
+        "Date": "2009-06-26", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Anivia": {
+        "Type": "Mage",
+        "HP": 50,  
+        "Attack": 10,  
+        "Spells": 100, 
+        "Difficulty": 70,  
+        "Date": "2009-07-10", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Annie": {
+        "Type": "Mage",
+        "HP": 30,  
+        "Attack": 20,  
+        "Spells": 100, 
+        "Difficulty": 40,  
+        "Date": "2009-02-21", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Ashe": {
+        "Type": "Ranged AD",
+        "HP": 30,  
+        "Attack": 70,  
+        "Spells": 20,  
+        "Difficulty": 40,  
+        "Date": "2009-02-21", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Blitzcrank": {
+        "Type": "Fighter",
+        "HP": 80,  
+        "Attack": 40,  
+        "Spells": 50,  
+        "Difficulty": 60,  
+        "Date": "2009-09-02", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Brand": {
+        "Type": "Mage",
+        "HP": 20,  
+        "Attack": 20,  
+        "Spells": 90,  
+        "Difficulty": 60,  
+        "Date": "2011-04-12", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Caitlyn": {
+        "Type": "Ranged AD",
+        "HP": 40,  
+        "Attack": 80,  
+        "Spells": 40,  
+        "Difficulty": 40,  
+        "Date": "2011-01-04", 
+        "IP": 4800, 
+        "RP": 790
+        },
+    "Cassiopeia": {
+        "Type": "Mage",
+        "HP": 30,  
+        "Attack": 20,  
+        "Spells": 90,  
+        "Difficulty": 100, 
+        "Date": "2010-12-14", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "ChoGath": {
+        "Type": "Tank",
+        "HP": 40,  
+        "Attack": 30,  
+        "Spells": 80,  
+        "Difficulty": 70,  
+        "Date": "2009-06-26", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Corki": {
+        "Type": "Ranged AD",
+        "HP": 30,  
+        "Attack": 80,  
+        "Spells": 60,  
+        "Difficulty": 70,  
+        "Date": "2009-09-19", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Darius": {
+        "Type": "Fighter",
+        "HP": 50,  
+        "Attack": 90,  
+        "Spells": 20,  
+        "Difficulty": 30,  
+        "Date": "2012-05-23", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Diana": {
+        "Type": "Assassin",
+        "HP": 60,  
+        "Attack": 70,  
+        "Spells": 80,  
+        "Difficulty": 40,  
+        "Date": "2012-08-07", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Dr. Mundo": {
+        "Type": "Fighter",
+        "HP": 80,  
+        "Attack": 60,  
+        "Spells": 70,  
+        "Difficulty": 50,  
+        "Date": "2009-09-02", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Draven": {
+        "Type": "Ranged AD",
+        "HP": 40,  
+        "Attack": 90,  
+        "Spells": 20,  
+        "Difficulty": 60,  
+        "Date": "2012-06-06", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Elise": {
+        "Type": "Mage",
+        "HP": 50,  
+        "Attack": 60,  
+        "Spells": 70,  
+        "Difficulty": 80,  
+        "Date": "2012-10-26", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Evelynn": {
+        "Type": "Assassin",
+        "HP": 20,  
+        "Attack": 40,  
+        "Spells": 70,  
+        "Difficulty": 80,  
+        "Date": "2009-05-01", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Ezreal": {
+        "Type": "Ranged AD",
+        "HP": 40,  
+        "Attack": 50,  
+        "Spells": 70,  
+        "Difficulty": 80,  
+        "Date": "2010-03-16", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Fiddlesticks": {
+        "Type": "Mage",
+        "HP": 30,  
+        "Attack": 20,  
+        "Spells": 90,  
+        "Difficulty": 50,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Fiora": {
+        "Type": "Assassin",
+        "HP": 40,  
+        "Attack": 100, 
+        "Spells": 30,  
+        "Difficulty": 50,  
+        "Date": "2012-02-29", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Fizz": {
+        "Type": "Fighter",
+        "HP": 40,  
+        "Attack": 30,  
+        "Spells": 70,  
+        "Difficulty": 60,  
+        "Date": "2011-11-15", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Galio": {
+        "Type": "Tank",
+        "HP": 70,  
+        "Attack": 30,  
+        "Spells": 60,  
+        "Difficulty": 40,  
+        "Date": "2010-08-10", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Gangplank": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 70,  
+        "Spells": 40,  
+        "Difficulty": 50,  
+        "Date": "2009-08-19", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Garen": {
+        "Type": "Fighter",
+        "HP": 40,  
+        "Attack": 90,  
+        "Spells": 20,  
+        "Difficulty": 20,  
+        "Date": "2010-04-27", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Gragas": {
+        "Type": "Fighter",
+        "HP": 90,  
+        "Attack": 40,  
+        "Spells": 60,  
+        "Difficulty": 60,  
+        "Date": "2010-02-02", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Graves": {
+        "Type": "Ranged AD",
+        "HP": 50,  
+        "Attack": 80,  
+        "Spells": 30,  
+        "Difficulty": 40,  
+        "Date": "2011-10-19", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Hecarim": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 80,  
+        "Spells": 40,  
+        "Difficulty": 50,  
+        "Date": "2012-04-18", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Heimerdinger": {
+        "Type": "Mage",
+        "HP": 60,  
+        "Attack": 20,  
+        "Spells": 80,  
+        "Difficulty": 40,  
+        "Date": "2009-10-10", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Irelia": {
+        "Type": "Assassin",
+        "HP": 40,  
+        "Attack": 70,  
+        "Spells": 50,  
+        "Difficulty": 50,  
+        "Date": "2010-11-16", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Janna": {
+        "Type": "Support",
+        "HP": 50,  
+        "Attack": 30,  
+        "Spells": 70,  
+        "Difficulty": 90,  
+        "Date": "2009-09-02", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Jarvan IV": {
+        "Type": "Fighter",
+        "HP": 80,  
+        "Attack": 60,  
+        "Spells": 30,  
+        "Difficulty": 50,  
+        "Date": "2011-03-01", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Jax": {
+        "Type": "Assassin",
+        "HP": 50,  
+        "Attack": 70,  
+        "Spells": 70,  
+        "Difficulty": 60,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Jayce": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 60,  
+        "Spells": 50,  
+        "Difficulty": 70,  
+        "Date": "2012-07-07", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Karma": {
+        "Type": "Support",
+        "HP": 70,  
+        "Attack": 10,  
+        "Spells": 80,  
+        "Difficulty": 80,  
+        "Date": "2011-02-01", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Karthus": {
+        "Type": "Mage",
+        "HP": 20,  
+        "Attack": 20,  
+        "Spells": 100, 
+        "Difficulty": 80,  
+        "Date": "2009-06-12", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Kassadin": {
+        "Type": "Mage",
+        "HP": 50,  
+        "Attack": 30,  
+        "Spells": 80,  
+        "Difficulty": 80,  
+        "Date": "2009-08-07", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Katarina": {
+        "Type": "Assassin",
+        "HP": 30,  
+        "Attack": 40,  
+        "Spells": 90,  
+        "Difficulty": 30,  
+        "Date": "2009-09-19", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Kayle": {
+        "Type": "Support",
+        "HP": 90,  
+        "Attack": 50,  
+        "Spells": 60,  
+        "Difficulty": 30,  
+        "Date": "2009-02-21", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Kennen": {
+        "Type": "Mage",
+        "HP": 30,  
+        "Attack": 40,  
+        "Spells": 85,  
+        "Difficulty": 50,  
+        "Date": "2010-04-08", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Kha'Zix" : {    
+        "Type": "Assassin",
+        "HP": 40,  
+        "Attack": 90,  
+        "Spells": 60,  
+        "Difficulty": 70,  
+        "Date": "2012-09-27", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Kog'Maw":{
+        "Type": "Ranged AD",
+        "HP": 20,  
+        "Attack": 80,  
+        "Spells": 50,  
+        "Difficulty": 80,  
+        "Date": "2010-06-24", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "LeBlanc": {
+        "Type": "Mage",
+        "HP": 40,  
+        "Attack": 10,  
+        "Spells": 100, 
+        "Difficulty": 90,  
+        "Date": "2010-11-02", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Lee Sin": {
+        "Type": "Assassin",
+        "HP": 50,  
+        "Attack": 80,  
+        "Spells": 30,  
+        "Difficulty": 80,  
+        "Date": "2011-04-01", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Leona": {
+        "Type": "Tank",
+        "HP": 80,  
+        "Attack": 40,  
+        "Spells": 30,  
+        "Difficulty": 40,  
+        "Date": "2011-07-13", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Lulu": {
+        "Type": "Support",
+        "HP": 50,  
+        "Attack": 40,  
+        "Spells": 70,  
+        "Difficulty": 50,  
+        "Date": "2012-03-20", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Lux": {
+        "Type": "Mage",
+        "HP": 40,  
+        "Attack": 20,  
+        "Spells": 90,  
+        "Difficulty": 60,  
+        "Date": "2010-10-19", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Malphite": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 50,  
+        "Spells": 70,  
+        "Difficulty": 30,  
+        "Date": "2009-09-02", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Malzahar": {
+        "Type": "Mage",
+        "HP": 20,  
+        "Attack": 20,  
+        "Spells": 90,  
+        "Difficulty": 60,  
+        "Date": "2010-06-01", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Maokai": {
+        "Type": "Tank",
+        "HP": 80,  
+        "Attack": 30,  
+        "Spells": 60,  
+        "Difficulty": 40,  
+        "Date": "2011-02-16", 
+        "IP": 4800, 
+        "RP": 790
+        },
+    "Master Yi": {
+        "Type": "Assassin",
+        "HP": 40,  
+        "Attack": 90,  
+        "Spells": 30,  
+        "Difficulty": 20,  
+        "Date": "2009-02-21", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Miss Fortune":{
+        "Type": "Ranged AD",
+        "HP": 20,  
+        "Attack": 80,  
+        "Spells": 50,  
+        "Difficulty": 30,  
+        "Date": "2010-09-08", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Mordekaiser": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 60,  
+        "Spells": 60,  
+        "Difficulty": 30,  
+        "Date": "2010-02-24", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Morgana": {
+        "Type": "Support",
+        "HP": 60,  
+        "Attack": 10,  
+        "Spells": 80,  
+        "Difficulty": 70,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Nami": {
+        "Type": "Support",
+        "HP": 40,  
+        "Attack": 30,  
+        "Spells": 90,  
+        "Difficulty": 80,  
+        "Date": "2012-12-07", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Nasus": {
+        "Type": "Fighter",
+        "HP": 50,  
+        "Attack": 70,  
+        "Spells": 60,  
+        "Difficulty": 20,  
+        "Date": "2009-10-01", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Nautilus": {
+        "Type": "Tank",
+        "HP": 60,  
+        "Attack": 40,  
+        "Spells": 80,  
+        "Difficulty": 50,  
+        "Date": "2012-02-14", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Nidalee": {
+        "Type": "Fighter",
+        "HP": 40,  
+        "Attack": 50,  
+        "Spells": 70,  
+        "Difficulty": 80,  
+        "Date": "2009-12-17", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Nocturne": {
+        "Type": "Assassin",
+        "HP": 50,  
+        "Attack": 90,  
+        "Spells": 20,  
+        "Difficulty": 50,  
+        "Date": "2011-03-15", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Nunu": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 40,  
+        "Spells": 70,  
+        "Difficulty": 30,  
+        "Date": "2009-02-21", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Olaf": {
+        "Type": "Fighter",
+        "HP": 50,  
+        "Attack": 90,  
+        "Spells": 30,  
+        "Difficulty": 40,  
+        "Date": "2010-06-09", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Orianna": {
+        "Type": "Mage",
+        "HP": 30,  
+        "Attack": 40,  
+        "Spells": 90,  
+        "Difficulty": 100, 
+        "Date": "2011-06-01", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Pantheon": {
+        "Type": "Assassin",
+        "HP": 30,  
+        "Attack": 90,  
+        "Spells": 30,  
+        "Difficulty": 30,  
+        "Date": "2010-02-02", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Poppy": {
+        "Type": "Fighter",
+        "HP": 50,  
+        "Attack": 40,  
+        "Spells": 80,  
+        "Difficulty": 60,  
+        "Date": "2010-01-13", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Rammus": {
+        "Type": "Tank",
+        "HP": 100, 
+        "Attack": 40, 
+        "Spells": 50,
+        "Difficulty": 50,
+        "Date": "2009-07-10", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Renekton": {
+        "Type": "Fighter",
+        "HP": 50,  
+        "Attack": 90,  
+        "Spells": 20,  
+        "Difficulty": 30,  
+        "Date": "2011-01-17", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Rengar": {
+        "Type": "Assassin",
+        "HP": 40,  
+        "Attack": 70,  
+        "Spells": 20,  
+        "Difficulty": 50,  
+        "Date": "2012-08-21", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Riven": {
+        "Type": "Fighter",
+        "HP": 50,  
+        "Attack": 80,  
+        "Spells": 10,  
+        "Difficulty": 40,  
+        "Date": "2011-09-14", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Rumble": {
+        "Type": "Mage",
+        "HP": 60,  
+        "Attack": 30,  
+        "Spells": 80,  
+        "Difficulty": 80,  
+        "Date": "2011-04-26", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Ryze": {
+        "Type": "Mage",
+        "HP": 20,  
+        "Attack": 20,  
+        "Spells": 100, 
+        "Difficulty": 30,  
+        "Date": "2009-02-21", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Sejuani": {
+        "Type": "Tank",
+        "HP": 70,  
+        "Attack": 50,  
+        "Spells": 60,  
+        "Difficulty": 40,  
+        "Date": "2012-01-17", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Shaco": {
+        "Type": "Assassin",
+        "HP": 40,  
+        "Attack": 80,  
+        "Spells": 60,  
+        "Difficulty": 90,  
+        "Date": "2009-10-10", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Shen": {
+        "Type": "Tank",
+        "HP": 90,  
+        "Attack": 30,  
+        "Spells": 30,  
+        "Difficulty": 30,  
+        "Date": "2010-03-24", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Shyvana": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 70,  
+        "Spells": 50,  
+        "Difficulty": 40,  
+        "Date": "2011-11-01", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Singed": {
+        "Type": "Tank",
+        "HP": 60,  
+        "Attack": 50,  
+        "Spells": 70,  
+        "Difficulty": 50,  
+        "Date": "2009-04-18", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Sion": {
+        "Type": "Fighter",
+        "HP": 80,  
+        "Attack": 50,  
+        "Spells": 70,  
+        "Difficulty": 40,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Sivir": {
+        "Type": "Ranged AD",
+        "HP": 30,  
+        "Attack": 90,  
+        "Spells": 10,  
+        "Difficulty": 30,  
+        "Date": "2009-02-21", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Skarner": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 70,  
+        "Spells": 50,  
+        "Difficulty": 50,  
+        "Date": "2011-08-09", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Sona": {
+        "Type": "Support",
+        "HP": 50,  
+        "Attack": 20,  
+        "Spells": 80,  
+        "Difficulty": 10,  
+        "Date": "2010-09-20", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Soraka": {
+        "Type": "Support",
+        "HP": 50,  
+        "Attack": 20,  
+        "Spells": 70,  
+        "Difficulty": 30,  
+        "Date": "2009-02-21", 
+        "IP": 450,  
+        "RP": 260
+        },
+    "Swain": {
+        "Type": "Mage",
+        "HP": 60,  
+        "Attack": 20,  
+        "Spells": 90,  
+        "Difficulty": 50,  
+        "Date": "2010-10-05", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Syndra": {
+        "Type": "Mage",
+        "HP": 50,  
+        "Attack": 20,  
+        "Spells": 90,  
+        "Difficulty": 90,  
+        "Date": "2012-09-13", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Talon": {
+        "Type": "Assassin",
+        "HP": 50,  
+        "Attack": 90,  
+        "Spells": 30,  
+        "Difficulty": 60,  
+        "Date": "2011-08-24", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Taric": {
+        "Type": "Support",
+        "HP": 80,  
+        "Attack": 40,  
+        "Spells": 50,  
+        "Difficulty": 30,  
+        "Date": "2009-08-19", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Teemo": {
+        "Type": "Ranged AD",
+        "HP": 30,  
+        "Attack": 50,  
+        "Spells": 70,  
+        "Difficulty": 40,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Tristana": {
+        "Type": "Ranged AD",
+        "HP": 40,  
+        "Attack": 90,  
+        "Spells": 30,  
+        "Difficulty": 30,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Trundle": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 70,  
+        "Spells": 20,  
+        "Difficulty": 50,  
+        "Date": "2010-12-01", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Tryndamere": {
+        "Type": "Assassin",
+        "HP": 50,  
+        "Attack": 100, 
+        "Spells": 20,  
+        "Difficulty": 60,  
+        "Date": "2009-05-01", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Twisted Fate": {
+        "Type": "Ranged AD",
+        "HP": 20,  
+        "Attack": 60,  
+        "Spells": 60,  
+        "Difficulty": 90,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Twitch": {
+        "Type": "Ranged AD",
+        "HP": 20,  
+        "Attack": 90,  
+        "Spells": 30,  
+        "Difficulty": 80,  
+        "Date": "2009-05-01", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Udyr": {
+        "Type": "Fighter",
+        "HP": 80,  
+        "Attack": 50,  
+        "Spells": 50,  
+        "Difficulty": 70,  
+        "Date": "2009-12-02", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Urgot": {
+        "Type": "Ranged AD",
+        "HP": 50,  
+        "Attack": 80,  
+        "Spells": 30,  
+        "Difficulty": 80,  
+        "Date": "2010-08-24", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Varus": {
+        "Type": "Ranged AD",
+        "HP": 30,  
+        "Attack": 70,  
+        "Spells": 40,  
+        "Difficulty": 60,  
+        "Date": "2012-05-08", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Vayne": {
+        "Type": "Ranged AD",
+        "HP": 10,  
+        "Attack": 90,  
+        "Spells": 20,  
+        "Difficulty": 70,  
+        "Date": "2011-05-10", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Veigar": {
+        "Type": "Mage",
+        "HP": 20,  
+        "Attack": 20,  
+        "Spells": 100, 
+        "Difficulty": 60,  
+        "Date": "2009-07-24", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Vi": {
+        "Type": "Fighter",
+        "HP": 50,  
+        "Attack": 80,  
+        "Spells": 30,  
+        "Difficulty": 50,  
+        "Date": "2012-12-19", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Viktor": {
+        "Type": "Mage",
+        "HP": 50,  
+        "Attack": 20,  
+        "Spells": 80,  
+        "Difficulty": 70,  
+        "Date": "2011-12-29", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Vladimir": {
+        "Type": "Mage",
+        "HP": 60,  
+        "Attack": 20,  
+        "Spells": 80,  
+        "Difficulty": 20,  
+        "Date": "2010-07-27", 
+        "IP": 4800, 
+        "RP": 880
+        },
+    "Volibear": {
+        "Type": "Fighter",
+        "HP": 70,  
+        "Attack": 60,  
+        "Spells": 40,  
+        "Difficulty": 40,  
+        "Date": "2011-11-29", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Warwick": {
+        "Type": "Fighter",
+        "HP": 40,  
+        "Attack": 70,  
+        "Spells": 40,  
+        "Difficulty": 20,  
+        "Date": "2009-02-21", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Wukong": {
+        "Type": "Fighter",
+        "HP": 50,  
+        "Attack": 80,  
+        "Spells": 20,  
+        "Difficulty": 30,  
+        "Date": "2011-07-26", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Xerath": {
+        "Type": "Mage",
+        "HP": 30,  
+        "Attack": 10,  
+        "Spells": 100, 
+        "Difficulty": 60,  
+        "Date": "2011-10-05", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Xin Zhao": {
+        "Type": "Assassin",
+        "HP": 60,  
+        "Attack": 80,  
+        "Spells": 30,  
+        "Difficulty": 30,  
+        "Date": "2010-07-13", 
+        "IP": 3150, 
+        "RP": 790
+        },
+    "Yorick": {
+        "Type": "Fighter",
+        "HP": 60,  
+        "Attack": 60,  
+        "Spells": 60,  
+        "Difficulty": 30,  
+        "Date": "2011-06-22", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Zed": {
+        "Type": "Assassin",
+        "HP": 40,  
+        "Attack": 80,  
+        "Spells": 10,  
+        "Difficulty": 80,  
+        "Date": "2012-11-13", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Ziggs": {
+        "Type": "Mage",
+        "HP": 50,  
+        "Attack": 30,  
+        "Spells": 90,  
+        "Difficulty": 70,  
+        "Date": "2012-02-01", 
+        "IP": 6300, 
+        "RP": 975
+        },
+    "Zilean": {
+        "Type": "Support",
+        "HP": 50,  
+        "Attack": 20,  
+        "Spells": 80,  
+        "Difficulty": 40,  
+        "Date": "2009-04-18", 
+        "IP": 1350, 
+        "RP": 585
+        },
+    "Zyra": {
+        "Type": "Mage",
+        "HP": 30,  
+        "Attack": 40,  
+        "Spells": 80,  
+        "Difficulty": 70,  
+        "Date": "2012-07-24", 
+        "IP": 6300, 
+        "RP": 975
+    }
+}

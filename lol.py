@@ -1,4 +1,5 @@
 import random
+import json
  
 items = [
         ["an Abyssal Scepter",                2650],
@@ -78,8 +79,15 @@ class Champion():
     IP=0
     RP=0
 
+def LoadChampList():
+    t=json.load(open("lolChamps.json",'r'))
+
+    for i in t:
+        print i
+        print t[i]["IP"]
+
 # Name, Type, HP, Attack, Spells, Difficulty, Date, IP, RP
-champions =[
+champions=[
 ["Ahri"        ,"Mage",     40,  30,  80,  80,  "2011-12-14", 6300, 975],
 ["Akali"       ,"Assassin", 30,  50,  80,  60,  "2010-05-11", 3150, 790],
 ["Alistar"     ,"Tank",     90,  60,  50,  80,  "2009-02-21", 1350, 585],
@@ -226,3 +234,4 @@ while(1):
         else:
             print "Champions can only leave your jungle while everything in it is dead"
     raw_input("Press enter to reroll, or CTRL+C to exit\n")
+    
