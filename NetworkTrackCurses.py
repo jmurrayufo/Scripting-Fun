@@ -16,14 +16,14 @@ def PrintData(scr,bytes,typeStr="Sent",time=-1):
    if(bytes < 2**10):
       scr.addstr("%s: %4d          "%(typeStr,bytes))
    elif(bytes < 2**20):
-      scr.addstr("%s: %8.3f (KiB)"%(typeStr,bytes/float(2**10)))
+      scr.addstr("%s: %6.1f   (KiB)"%(typeStr,bytes/float(2**10)))
    elif(bytes < 2**30):
-      scr.addstr("%s: %8.3f (MiB)"%(typeStr,bytes/float(2**20)))
+      scr.addstr("%s: %7.2f  (MiB)"%(typeStr,bytes/float(2**20)))
    else:
       scr.addstr("%s: %8.3f (GiB)"%(typeStr,bytes/float(2**30)))
 
    if(time>0):
-      scr.addstr(" (%6.3f KiB/s)" %((bytes/(float(2**10))/time)))
+      scr.addstr(" (%5.1f KiB/s)" %((bytes/(float(2**10))/time)))
 
 def main(scr):
    curses.curs_set(0)
