@@ -1,5 +1,5 @@
 class players:
-  ADC = 0
+	ADC = 0
 	Mid = 0
 	Top = 0
 	Jungle = 0
@@ -90,5 +90,5 @@ if numpub == 3:
 	player3 = pub3
 	pubrole3 = raw_input("Role of pubby number 3? '('ADC, Mid, Top, Jungle, Support ')'")
 	pubbyroles(pub3, pubrole3)
-def optimalroles (player1, player2, player3, player4, player5)
+#def optimalroles (player1, player2, player3, player4, player5)
 	
