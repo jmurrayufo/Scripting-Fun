@@ -1,13 +1,21 @@
 # World guard generator 
 
+
+
 import time # Delays
 
+
+
 def Print2File(string,fp):
+   """ Print a string to the command line, and to the file fp. """
    print string
    fp = open(fp,"a+")
    fp.write(string+"\n")
    fp.close()
 
+
+
+# Get user inputs
 print "<=Plot Names=>"
 areaName = raw_input(">")
 fileName = areaName+".txt"
@@ -36,6 +44,9 @@ print "\n<=Number of Plots to the East=>"
 plotsEast = input(">")
 
 
+
+# Loop thought all locations that we plan to have a plot. This ignores any limitations for
+#  land area and exports the results to a file in the directory the command was run from. 
 for x in range(plotsNorth):
    for y in range (plotsEast):
       plotName = "%s%02d%02d"%(areaName,x,y)
@@ -54,13 +65,3 @@ for x in range(plotsNorth):
       Print2File("        }",fileName)
       Print2File("        owners: {}",fileName)
       Print2File("        members: {}",fileName)
-
-# spawn:
-#     type: cuboid
-#     min: {x: -244.0, y: 0.0, z: 160.0}
-#     max: {x: -116.0, y: 256.0, z: 288.0}
-#     priority: 0
-#     flags: {creeper-explosion: deny, pvp: deny, greeting: Entering Spawn, 
-#         enderman-grief: deny, mob-damage: deny, build: allow, mob-spawning: deny}
-#     owners: {}
-#     members: {}
