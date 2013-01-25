@@ -47,21 +47,21 @@ plotsEast = input(">")
 
 # Loop thought all locations that we plan to have a plot. This ignores any limitations for
 #  land area and exports the results to a file in the directory the command was run from. 
-for x in range(plotsNorth):
-   for y in range (plotsEast):
-      plotName = "%s%02d%02d"%(areaName,x,y)
+for z in range(plotsNorth):
+   for x in range (plotsEast):
+      plotName = "%s%02d%02d"%(areaName,z,x)
       # Spacing on the following lines is important. It allows for copy/paste into the regions.yml file when done. 
       Print2File("    %s:"%(plotName),fileName)
       Print2File("        type: cuboid",fileName)
       Print2File("        min: {x: %d, y: 0.0, z: %d}"%( plotCenterX + x*plotDim + x*streetWidth,
-                                                         plotCenterY+  y*plotDim + y*streetWidth ),
+                                                         plotCenterY - z*plotDim - z*streetWidth ),
          fileName)
       Print2File("        max: {x: %d, y: 256.0, z: %d}" %( plotCenterX + (x+1)*plotDim + x*streetWidth,
-                                                            plotCenterY + (y+1)*plotDim + y*streetWidth ),
+                                                            plotCenterY - (z+1)*plotDim - z*streetWidth ),
          fileName)
       Print2File("        priority: 0",fileName)
       Print2File("        flags: {",fileName)
-      Print2File("        greeting: Entering %s"%(plotName),fileName)
+      Print2File("        greeting: Entering %s,"%(plotName),fileName)
       Print2File("        farewell: Leaving %s"%(plotName),fileName)
       Print2File("        }",fileName)
       Print2File("        owners: {}",fileName)
