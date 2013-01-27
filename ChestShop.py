@@ -2,6 +2,7 @@ import re
 import time
 from datetime import *
 from matplotlib import pyplot as plt
+from matplotlib import dates
 """
 Column Breakdown:
     0: Date/time
@@ -58,7 +59,9 @@ def CustomBarPlot(X,Y,numBoxes):
             ind+=1
     # We don't need that final bin anymore, so pop it off the list. We only care about the left side of each bin for plotting
     xBins.pop() 
+    fig=plt.figure()
     plt.bar(xBins,yBins,(max(X) - min(X) ).total_seconds()/86400/numBoxes)
+    return fig
     
 ReMatStr = "(\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2})"
 ReMatStr += " \[ChestShop\]"
@@ -68,7 +71,7 @@ ReMatStr += " (\d)"
 ReMatStr += " (\w+)"
 ReMatStr += " for"
 ReMatStr += " (\d+\.\d{2})"
-ReMatStr += " from"
+ReMatStr += " (?:from|to)"
 ReMatStr += " (\w+(?:\ Shop)?)"
 ReMatStr += " at"
 ReMatStr += " \[(\w+)\]"
@@ -86,8 +89,8 @@ for i in fp:
         data[-1][0]=datetime.strptime(data[-1][0],"%Y/%m/%d %H:%M:%S")
         data[-1][3]=eval(data[-1][3])
         data[-1][5]=eval(data[-1][5])
-# for i in data:
-#     print i
+
+
 
 # print "Cleints:",FindUniqueCol(data,1)
 # print "Items:",FindUniqueCol(data,4)
@@ -97,5 +100,12 @@ for i in fp:
 (X,Y)=FilterData(data)
 
 
-CustomBarPlot(X,Y,20)
-plt.show()
+fig = CustomBarPlot(X,Y,7)
+fig.autofmt_xdate()
+ax=fig.add_subplot(111)
+ax.xaxis.set_major_locator(dates.DayLocator())
+hfmt = dates.DateFormatter('%m/%d')
+ax.xaxis.set_major_formatter(hfmt)
+# plt.show()
+# plt.title("test")
+# plt.savefig("test.png")
