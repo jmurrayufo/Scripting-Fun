@@ -8,7 +8,8 @@ class players:
 	Top = 0
 	Jungle = 0
 	Support = 0
-
+	
+"""
 def pubbyroles(pub, pubrolex):
 	if pub == pub1:
 		if pubrolex == "ADC":
@@ -169,7 +170,7 @@ def optimalroles (player1, player2, player3, player4, player5):
 	print player3.name+" is "+r3
 	print player4.name+" is "+r4
 	print player5.name+" is "+r5
-
+"""
 def AltOptimalRoles(players):
 	assert(len(players)==5)
 	maxVal = 0
