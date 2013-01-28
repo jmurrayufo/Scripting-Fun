@@ -173,18 +173,22 @@ def optimalroles (player1, player2, player3, player4, player5):
 def AltOptimalRoles(players):
 	assert(len(players)==5)
 	maxVal = 0
+	maxList = list()
 	for i in itertools.permutations(players,5):
 		tmpVal = CalculateRolesValue(i)
-		if tmpVal > maxVal:
+		if tmpVal >= maxVal:
 			print "\nFound new best!"
-			maxList = i
+			if tmpVal > maxVal:
+				maxList = list()
+			maxList.append(i)	
 			maxVal = tmpVal
-			print "    ADC:",maxList[0].name
-			print "    Mid:",maxList[1].name
-			print "    Top:",maxList[2].name
-			print " Jungle:",maxList[3].name
-			print "Support:",maxList[4].name
-			print "Total Score: %d"%(maxVal)
+			# print "    ADC:",maxList[-1][0].name
+			# print "    Mid:",maxList[-1][1].name
+			# print "    Top:",maxList[-1][2].name
+			# print " Jungle:",maxList[-1][3].name
+			# print "Support:",maxList[-1][4].name
+			# print "Total Score: %d"%(maxVal)
+	return maxList
 
 def CalculateRolesValue(players):
 	"""
@@ -220,11 +224,11 @@ regPlayers.append(tmp)
 
 tmp = players()
 tmp.name = "Soton"
-tmp.ADC = 20
-tmp.Mid = 20
+tmp.ADC = 1
+tmp.Mid = 10
 tmp.Top = 20
-tmp.Jungle = 60
-tmp.Support = 70
+tmp.Jungle = 75
+tmp.Support = 90
 regPlayers.append(tmp)
 
 tmp = players()
@@ -326,4 +330,14 @@ while(len(actualPlayers) < 5):
 	actualPlayers.append(tmp)
 	del tmp
 
-AltOptimalRoles(actualPlayers)
+roles = AltOptimalRoles(actualPlayers)
+print "Selected %d Role Lists"%(len(roles))
+
+for i in roles:
+	print
+	print "    ADC:",i[0].name
+	print "    Mid:",i[1].name
+	print "    Top:",i[2].name
+	print " Jungle:",i[3].name
+	print "Support:",i[4].name
+	print "Total Score: %d"%(CalculateRolesValue(i))
