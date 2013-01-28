@@ -177,7 +177,7 @@ def AltOptimalRoles(players):
 	for i in itertools.permutations(players,5):
 		tmpVal = CalculateRolesValue(i)
 		if tmpVal >= maxVal:
-			print "\nFound new best!"
+			# print "\nFound new best!"
 			if tmpVal > maxVal:
 				maxList = list()
 			maxList.append(i)	
@@ -340,4 +340,4 @@ for i in roles:
 	print "    Top:",i[2].name
 	print " Jungle:",i[3].name
 	print "Support:",i[4].name
-	print "Total Score: %d"%(CalculateRolesValue(i))
+print "\nTotal Score: %d"%(CalculateRolesValue(i))
