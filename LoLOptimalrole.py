@@ -7,38 +7,7 @@ class players:
 	Top = 0
 	Jungle = 0
 	Support = 0
-#Still need to add a few of the 'usual' players, get relative skill levels for everyone
-Skyfire156 = players()
-Skyfire156.name = "Skyfire156"
-Skyfire156.ADC = 60
-Skyfire156.Mid = 40
-Skyfire156.Top = 40
-Skyfire156.Jungle = 40
-Skyfire156.Support = 50
 
-Soton = players()
-Soton.name = "Soton"
-Soton.ADC = 20
-Soton.Mid = 20
-Soton.Top = 20
-Soton.Jungle = 60
-Soton.Support = 70
-
-Mongo988 = players()
-Mongo988.name = "Mongo988"
-Mongo988.ADC = 30
-Mongo988.Mid = 50
-Mongo988.Top = 50
-Mongo988.Jungle = 10
-Mongo988.Support = 30
-
-pub1 = players()
-pub1.name = "pubby number 1"
-pub2 = players()
-pub2.name = "pubby number 2"
-pub3 = players()
-pub3.name = "pubby number 3"
-#makes sure the pubbys get the roles they pick
 def pubbyroles(pub, pubrolex):
 	if pub == pub1:
 		if pubrolex == "ADC":
@@ -73,33 +42,7 @@ def pubbyroles(pub, pubrolex):
 			pub3.Jungle = 101
 		if pubrolex == "Support":
 			pub3.Support = 101
-# determines number of players vs pubbys
-number1 = input("How many players?")
-if number1 == 1:
-	print "Figure it out yourself, ya lazy bastard!"
-if number1 >= 2:
-	player1 = input("Summoner name of player 1?")
-	player2 = input("Summoner name of player 2?")
-if number1 >= 3:
-	player3 = input("Summoner name of player 3?")
-if number1 >= 4:
-	player4 = input("Summoner name of player 4?")
-if number1 == 5:
-	player5 = input("Summoner name of player 5?")
-numpub = 5-number1
-if numpub >= 1:
-	player5 = pub1
-	pubrole1 = raw_input("Role of pubby number 1? (ADC, Mid, Top, Jungle, Support )") 
-	pubbyroles(pub1, pubrole1)
-if numpub >= 2:
-	player4 = pub2
-	pubrole2 = raw_input("Role of pubby number 2? (ADC, Mid, Top, Jungle, Support)")
-	pubbyroles(pub2, pubrole2)
-if numpub == 3:
-	player3 = pub3
-	pubrole3 = raw_input("Role of pubby number 3? (ADC, Mid, Top, Jungle, Support)")
-	pubbyroles(pub3, pubrole3)
-	
+
 def rolepermute():
 	for role in itertools.permutations('abcde',5):
 		yield role
@@ -225,5 +168,71 @@ def optimalroles (player1, player2, player3, player4, player5):
 	print player3.name+" is "+r3
 	print player4.name+" is "+r4
 	print player5.name+" is "+r5
+
+def AltOptimalRoles(players):
+	if(len(players)!=5):
+		print "ERROR: 'players' must be an array of length 5"
+		return
+
+#Still need to add a few of the 'usual' players, get relative skill levels for everyone
+Skyfire156 = players()
+Skyfire156.name = "Skyfire156"
+Skyfire156.ADC = 60
+Skyfire156.Mid = 40
+Skyfire156.Top = 40
+Skyfire156.Jungle = 40
+Skyfire156.Support = 50
+
+Soton = players()
+Soton.name = "Soton"
+Soton.ADC = 20
+Soton.Mid = 20
+Soton.Top = 20
+Soton.Jungle = 60
+Soton.Support = 70
+
+Mongo988 = players()
+Mongo988.name = "Mongo988"
+Mongo988.ADC = 30
+Mongo988.Mid = 50
+Mongo988.Top = 50
+Mongo988.Jungle = 10
+Mongo988.Support = 30
+
+pub1 = players()
+pub1.name = "pubby number 1"
+pub2 = players()
+pub2.name = "pubby number 2"
+pub3 = players()
+pub3.name = "pubby number 3"
+#makes sure the pubbys get the roles they pick
+
+# determines number of players vs pubbys
+number1 = input("How many players?")
+if number1 == 1:
+	print "Figure it out yourself, ya lazy bastard!"
+if number1 >= 2:
+	player1 = input("Summoner name of player 1?")
+	player2 = input("Summoner name of player 2?")
+if number1 >= 3:
+	player3 = input("Summoner name of player 3?")
+if number1 >= 4:
+	player4 = input("Summoner name of player 4?")
+if number1 == 5:
+	player5 = input("Summoner name of player 5?")
+numpub = 5-number1
+if numpub >= 1:
+	player5 = pub1
+	pubrole1 = raw_input("Role of pubby number 1? (ADC, Mid, Top, Jungle, Support )") 
+	pubbyroles(pub1, pubrole1)
+if numpub >= 2:
+	player4 = pub2
+	pubrole2 = raw_input("Role of pubby number 2? (ADC, Mid, Top, Jungle, Support)")
+	pubbyroles(pub2, pubrole2)
+if numpub == 3:
+	player3 = pub3
+	pubrole3 = raw_input("Role of pubby number 3? (ADC, Mid, Top, Jungle, Support)")
+	pubbyroles(pub3, pubrole3)
+	
 
 optimalroles(player1, player2, player3, player4, player5)
