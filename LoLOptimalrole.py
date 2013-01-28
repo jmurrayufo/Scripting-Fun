@@ -1,4 +1,5 @@
 import itertools
+import time # testing delays
 
 class players:
 	name = "none"
@@ -170,35 +171,76 @@ def optimalroles (player1, player2, player3, player4, player5):
 	print player5.name+" is "+r5
 
 def AltOptimalRoles(players):
-	if(len(players)!=5):
-		print "ERROR: 'players' must be an array of length 5"
-		return
+	assert(len(players)==5)
+	maxVal = 0
+	for i in itertools.permutations(players,5):
+		tmpVal = CalculateRolesValue(i)
+		if tmpVal > maxVal:
+			print "\nFound new best!"
+			maxList = i
+			maxVal = tmpVal
+			print "    ADC:",maxList[0].name
+			print "    Mid:",maxList[1].name
+			print "    Top:",maxList[2].name
+			print " Jungle:",maxList[3].name
+			print "Support:",maxList[4].name
+			print "Total Score: %d"%(maxVal)
+
+def CalculateRolesValue(players):
+	"""
+	Calcuate the value of a given list of players and return that value
+	"""
+	assert(len(players)==5)
+	# lists are in order of ADC, Mid, Top, Jungle, Support
+	retVal = 0
+	# This set of lines makes it clear that the class Players should really have an array
+	#	of numbers, not a set of attributes. It would be less lines to go thorugh given the
+	#	simplicity of the data. No worries, not worth fixing now xD
+	retVal += players[0].ADC
+	retVal += players[1].Mid
+	retVal += players[2].Top
+	retVal += players[3].Jungle
+	retVal += players[4].Support
+
+	return retVal
 
 #Still need to add a few of the 'usual' players, get relative skill levels for everyone
-Skyfire156 = players()
-Skyfire156.name = "Skyfire156"
-Skyfire156.ADC = 60
-Skyfire156.Mid = 40
-Skyfire156.Top = 40
-Skyfire156.Jungle = 40
-Skyfire156.Support = 50
+# Generate a list of players that we normally play with. We don't need to name each object, as the list keeps track of that for us.
+regPlayers = list()
 
-Soton = players()
-Soton.name = "Soton"
-Soton.ADC = 20
-Soton.Mid = 20
-Soton.Top = 20
-Soton.Jungle = 60
-Soton.Support = 70
+# We can reuse tmp every time, and throw it away when done
+tmp = players()
+tmp.name = "Skyfire156"
+tmp.ADC = 60
+tmp.Mid = 40
+tmp.Top = 40
+tmp.Jungle = 40
+tmp.Support = 50
+regPlayers.append(tmp)
 
-Mongo988 = players()
-Mongo988.name = "Mongo988"
-Mongo988.ADC = 30
-Mongo988.Mid = 50
-Mongo988.Top = 50
-Mongo988.Jungle = 10
-Mongo988.Support = 30
+tmp = players()
+tmp.name = "Soton"
+tmp.ADC = 20
+tmp.Mid = 20
+tmp.Top = 20
+tmp.Jungle = 60
+tmp.Support = 70
+regPlayers.append(tmp)
 
+tmp = players()
+tmp.name = "Mongo988"
+tmp.ADC = 30
+tmp.Mid = 50
+tmp.Top = 50
+tmp.Jungle = 10
+tmp.Support = 30
+regPlayers.append(tmp)
+
+# We are done with this varibale, delete it. We dont NEED to, its small, but its nice to do it anyway
+del tmp
+
+"""
+# Section commented out to make way for clean code
 pub1 = players()
 pub1.name = "pubby number 1"
 pub2 = players()
@@ -233,6 +275,55 @@ if numpub == 3:
 	player3 = pub3
 	pubrole3 = raw_input("Role of pubby number 3? (ADC, Mid, Top, Jungle, Support)")
 	pubbyroles(pub3, pubrole3)
-	
-
 optimalroles(player1, player2, player3, player4, player5)
+"""
+# Get initial input
+print "How many regular players do you have? (The rest are pubbys)"
+numRegPlayers = input(">")
+
+# Error check our input
+assert(1 < numRegPlayers <= 5),"Players must be from 2-5!!!"
+assert(numRegPlayers <= len(regPlayers)),"You don't have that many regulars in the list..."
+
+
+# Loop until we have enough players (we might need to re-loop a few times for errors)
+actualPlayers = list()
+while(len(actualPlayers) < numRegPlayers):
+	
+	# Display the list of players we can pick from
+	for p in range(len(regPlayers)):
+		print p,":",regPlayers[p].name
+
+	# Get user input
+	print "Select person to add to the roster"
+	# We might get junk data, except this and continue
+	try:
+		index = input(">")
+		actualPlayers.append(regPlayers.pop(index))
+	except:
+		print "You dun goofed, try again!"
+		continue # Not needed, here for clarity
+
+# Debug printing, not really needed
+for i in actualPlayers:
+	print i.name
+
+# We need to fill in the pubby info
+while(len(actualPlayers) < 5):
+	print "What is pubby #%d doing?"%(len(actualPlayers)+1)
+	print "ADC, Mid, Top, Jungle, Support (Only first letter is needed)"
+	role = raw_input(">")
+
+	# General a simple template for that person
+	# TODO: This function would be way cooler if the pubby could tell us a few roles, and then we can test them all
+	tmp = players()
+	tmp.name = "Pubby%d"%(len(actualPlayers)+1)
+	tmp.ADC = 100 if role[0]=="A" or role[0]=="a" else 0
+	tmp.Mid = 100 if role[0]=="M" or role[0]=="m" else 0
+	tmp.Top = 100 if role[0]=="T" or role[0]=="t" else 0
+	tmp.Jungle = 100 if role[0]=="J" or role[0]=="j" else 0
+	tmp.Support = 100 if role[0]=="S" or role[0]=="s" else 0
+	actualPlayers.append(tmp)
+	del tmp
+
+AltOptimalRoles(actualPlayers)
