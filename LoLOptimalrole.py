@@ -1,5 +1,6 @@
 import itertools
 import time # testing delays
+import re
 
 class players:
 	name = "none"
@@ -8,7 +9,7 @@ class players:
 	Top = 0
 	Jungle = 0
 	Support = 0
-	
+
 """
 def pubbyroles(pub, pubrolex):
 	if pub == pub1:
@@ -209,6 +210,43 @@ def CalculateRolesValue(players):
 
 	return retVal
 
+def ParsePubbyStr(pubStr):
+	"""ADC, Mid, Top, Jungle, Support"""
+	reStr = "((?:[aA](?:[dD][cC]))"
+	reStr += "|(?:[mM](?:id))"
+	reStr += "|(?:[tT](?:op))"
+	reStr += "|(?:[jJ](?:ungler?))" # Hey look, that R is optional!
+	reStr += "|(?:[sS](?:upport))"
+	reStr += ")"
+
+	retVal = players()
+
+	pointVal = 100
+	# Find a thing
+	while(1):
+		match	= re.search(reStr,pubStr)	
+		if(match):
+			print match.group(0)
+			# Modify player
+			if match.group(0)[0] == "A" or match.group(0)[0] == "a":
+				retVal.ADC = pointVal
+			elif match.group(0)[0] == "M" or match.group(0)[0] == "m":
+				retVal.Mid = pointVal
+			elif match.group(0)[0] == "T" or match.group(0)[0] == "t":
+				retVal.Top = pointVal 
+			elif match.group(0)[0] == "J" or match.group(0)[0] == "j":
+				retVal.Jungle = pointVal 
+			elif match.group(0)[0] == "S" or match.group(0)[0] == "s":
+				retVal.Support = pointVal
+			else:
+				assert(0),"Invalid string passed matches" 
+			pointVal-=20
+			# Modify string so we don't match this again
+			pubStr = re.sub(match.group(0),"",pubStr)
+		else:
+			break
+	return retVal
+
 #Still need to add a few of the 'usual' players, get relative skill levels for everyone
 # Generate a list of players that we normally play with. We don't need to name each object, as the list keeps track of that for us.
 regPlayers = list()
@@ -294,19 +332,20 @@ assert(numRegPlayers <= len(regPlayers)),"You don't have that many regulars in t
 # Loop until we have enough players (we might need to re-loop a few times for errors)
 actualPlayers = list()
 while(len(actualPlayers) < numRegPlayers):
-	
+	print "\nSelect person to add to the roster"
 	# Display the list of players we can pick from
 	for p in range(len(regPlayers)):
 		print p,":",regPlayers[p].name
 
 	# Get user input
-	print "Select person to add to the roster"
 	# We might get junk data, except this and continue
 	try:
 		index = input(">")
 		actualPlayers.append(regPlayers.pop(index))
+	except KeyboardInterrupt:
+		raise
 	except:
-		print "You dun goofed, try again!"
+		print ">>>You dun goofed, try again!<<<"
 		continue # Not needed, here for clarity
 
 # Debug printing, not really needed
@@ -314,21 +353,19 @@ for i in actualPlayers:
 	print i.name
 
 # We need to fill in the pubby info
+
 while(len(actualPlayers) < 5):
-	print "What is pubby #%d doing?"%(len(actualPlayers)+1)
+	print "\nWhat is pubby #%d doing?"%(len(actualPlayers)+1)
 	print "ADC, Mid, Top, Jungle, Support (Only first letter is needed)"
 	role = raw_input(">")
 
 	# General a simple template for that person
 	# TODO: This function would be way cooler if the pubby could tell us a few roles, and then we can test them all
-	tmp = players()
+	tmp = ParsePubbyStr(role)
 	tmp.name = "Pubby%d"%(len(actualPlayers)+1)
-	tmp.ADC = 100 if role[0]=="A" or role[0]=="a" else 0
-	tmp.Mid = 100 if role[0]=="M" or role[0]=="m" else 0
-	tmp.Top = 100 if role[0]=="T" or role[0]=="t" else 0
-	tmp.Jungle = 100 if role[0]=="J" or role[0]=="j" else 0
-	tmp.Support = 100 if role[0]=="S" or role[0]=="s" else 0
-	actualPlayers.append(tmp)
+
+	if(tmp.ADC or tmp.Mid or tmp.Top or tmp.Jungle or tmp.Support):
+		actualPlayers.append(tmp)
 	del tmp
 
 roles = AltOptimalRoles(actualPlayers)
