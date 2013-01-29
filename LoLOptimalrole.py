@@ -4,12 +4,13 @@ import re
 import random # Has some handy funcitons
 
 class players:
-	name = "none"
-	ADC = 0
-	Mid = 0
-	Top = 0
-	Jungle = 0
-	Support = 0
+	def __init__(self,N="None",A=0,M=0,T=0,J=0,S=0):
+		self.name = N
+		self.ADC = A
+		self.Mid = M
+		self.Top = T
+		self.Jungle = J
+		self.Support = S
 
 
 def AltOptimalRoles(players,tolerance=0):
@@ -96,31 +97,13 @@ def ParsePubbyStr(pubStr):
 regPlayers = list()
 
 # We can reuse tmp every time, and throw it away when done
-tmp = players()
-tmp.name = "Skyfire156"
-tmp.ADC = 60
-tmp.Mid = 40
-tmp.Top = 40
-tmp.Jungle = 40
-tmp.Support = 50
+tmp = players("Skyfire156",60,40,40,40,50)
 regPlayers.append(tmp)
 
-tmp = players()
-tmp.name = "Soton"
-tmp.ADC = 1
-tmp.Mid = 10
-tmp.Top = 20
-tmp.Jungle = 75
-tmp.Support = 90
+tmp = players("Soton",1,10,20,75,90)
 regPlayers.append(tmp)
 
-tmp = players()
-tmp.name = "Mongo988"
-tmp.ADC = 30
-tmp.Mid = 50
-tmp.Top = 50
-tmp.Jungle = 10
-tmp.Support = 30
+tmp = players("Mongo988",30,50,50,10,30)
 regPlayers.append(tmp)
 
 # We are done with this varibale, delete it. We dont NEED to, its small, but its nice to do it anyway
