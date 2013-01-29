@@ -11,6 +11,8 @@ class players:
 		self.Top = T
 		self.Jungle = J
 		self.Support = S
+	def StatTup(self):
+		return (self.ADC,self.Mid,self.Top,self.Jungle,self.Support)
 
 
 def AltOptimalRoles(players,tolerance=0):
@@ -97,6 +99,9 @@ def ParsePubbyStr(pubStr):
 regPlayers = list()
 
 # We can reuse tmp every time, and throw it away when done
+"""
+(Name,ADC,Mid,Top,Jungle,Support)
+"""
 tmp = players("Skyfire156",60,40,40,40,50)
 regPlayers.append(tmp)
 
@@ -158,7 +163,7 @@ while(len(actualPlayers) < 5):
 		actualPlayers.append(tmp)
 	del tmp
 
-roles = AltOptimalRoles(actualPlayers,50)
+roles = AltOptimalRoles(actualPlayers,25)
 print "\nSelected %d Role Lists"%(len(roles))
 
 # # Debug
@@ -172,10 +177,30 @@ print "\nSelected %d Role Lists"%(len(roles))
 # 	print "        Score: %d"%(CalculateRolesValue(i))
 
 final = random.choice(roles)
-print
-print "    ADC:",final[0].name
-print "    Mid:",final[1].name
-print "    Top:",final[2].name
-print " Jungle:",final[3].name
-print "Support:",final[4].name
+
+# Calculate name length for pretty output
+nameLength = 0
+for i in final:
+	if len(i.name) > nameLength:
+		nameLength = len(i.name)
+nameLength = "%%%ds"%(nameLength)
+
+positionsList = ["ADC","Mid","Top","Jungle","Support"]
+
+# Print Final Output
+
+# This is one line less, and more dynamic then the lower function. 
+for index,player in zip(range(len(final)),final):
+	print "%7s:"%(positionsList[index]),
+	print nameLength%(player.name),
+	print "(%d)"%(player.StatTup()[index])
 print " (Score: %d)"%(CalculateRolesValue(final))
+
+# This is longer, and less dynamic
+print "    ADC:",nameLength%(final[0].name),"(%d)"%(final[0].StatTup()[0])
+print "    Mid:",nameLength%(final[1].name),"(%d)"%(final[1].StatTup()[1])
+print "    Top:",nameLength%(final[2].name),"(%d)"%(final[2].StatTup()[2])
+print " Jungle:",nameLength%(final[3].name),"(%d)"%(final[3].StatTup()[3])
+print "Support:",nameLength%(final[4].name),"(%d)"%(final[4].StatTup()[4])
+print " (Score: %d)"%(CalculateRolesValue(final))
+
