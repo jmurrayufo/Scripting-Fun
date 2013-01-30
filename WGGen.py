@@ -1,7 +1,4 @@
 # World guard generator 
-
-
-
 import time # Delays
 
 
@@ -13,7 +10,42 @@ def Print2File(string,fp):
    fp.write(string+"\n")
    fp.close()
 
-
+class WGZone:
+   __init__(self):
+      self.name=""
+      self.xBounds=[0,0]
+      self.zBounds=[0,0]
+      self.flags=dict()
+   def Output(file):
+      pass
+   def SetLoc(x,z,size,orientation="sw"):
+      """
+         x: X coord to base location from
+         z: Z coord to base location from
+         size: True dimensions of the square
+         orientation: How the shape relates to the x and z locations
+            c = centered (will round down)
+            ne = x,z are the North East Corner
+            se = x,z are the South East Corner
+            sw = x,z are the South West Corner (Default)
+            nw = x,z are the North West Corner
+      """
+      # TODO: This section could be shunk by several lines with some digital logic
+      if(orientation=="c"):
+         self.xBounds = [x - size//2,x + size//2] # Round down divide
+         self.zBounds = [z - size//2,z + size//2] # Round down divide
+      elif(orientation=="ne"):
+         self.xBounds = [x - size,x]
+         self.zBounds = [z + size,z]
+      elif(orientation=="se"):
+         self.xBounds = [x - size,x]
+         self.zBounds = [z,z - size]
+      elif(orientation=="sw"):
+         self.xBounds = [x,x + size]
+         self.zBounds = [z,z - size]
+      elif(orientation=="nw"):
+         self.xBounds = [x,x + size]
+         self.zBounds = [z + size,z]
 
 # Get user inputs
 print "<=Plot Names=>"
