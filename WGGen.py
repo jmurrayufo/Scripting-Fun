@@ -16,9 +16,9 @@ class WGZone:
       self.xBounds=[0,0]
       self.zBounds=[0,0]
       self.flags=dict()
-   def Output(file):
+   def Output(self,file):
       pass
-   def SetLoc(x,z,size,orientation="sw"):
+   def SetLoc(self,x,z,size,orientation="sw"):
       """
          x: X coord to base location from
          z: Z coord to base location from
