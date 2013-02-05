@@ -48,15 +48,6 @@ def FindSiteNumber(airports,siteNumber):
    assert(0),"Airport not found"
 
 class Runway:
-   SiteNumber=str()
-   ID=str()
-   IDB=str() #base
-   IDBRP=bool() #right Pattern
-   IDR=str() #Reciprocal
-   IDRRP=bool() # Right Pattern
-   Length=int()
-   Width=int()
-   Surface=str()
    def __init__(self,csvLine):
       self.SiteNumber = csvLine[0]
       self.ID = csvLine[2]
