@@ -35,3 +35,6 @@ nosetests.xml
 *.sublime-project
 *.sublime-workspace
 .pydevproject
+
+# Bulk Data
+*.csv
