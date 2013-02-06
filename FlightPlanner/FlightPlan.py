@@ -2,7 +2,6 @@ import csv
 import time
 import re #To parse strings
 import math #Distance calculations
-import itertools
 
 class Airport:
    def __init__(self,csvLine = None):
@@ -133,6 +132,7 @@ def distance(origin, destination,units="nm"):
    return d
 
 ## END TEST CODE SECTION
+# Slurp up Airport data
 Airports = list()
 with open('Facilities.csv','r') as csvfile:
    csvreader = csv.reader(csvfile)
@@ -141,6 +141,7 @@ with open('Facilities.csv','r') as csvfile:
    for i in csvreader:
       Airports.append(Airport(i))
 
+# Slurp up Runway Data
 with open('Runways.csv','r') as csvfile:
    csvreader = csv.reader(csvfile)
    csvreader.next() # Eat header
@@ -148,7 +149,5 @@ with open('Runways.csv','r') as csvfile:
       tmpAirport = FindSiteNumber(Airports,i[0])
       tmpAirport.Runways.append(Runway(i))
 
-for i in itertools.combinations(Airports,2):
-   print i
-   print distance(i[0],i[1])
-   # time.sleep(1)
+#Slurp up weather data
+# TODO: Add code for this
