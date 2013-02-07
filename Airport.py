@@ -11,7 +11,7 @@ def GetWeather(timeStr="06"):
    retVal=dict()
 
    # Read data and prep for indexing
-   rawData =  urllib2.urlopen("http://aviationweather.gov/products/nws/all?fint=06&lvl=lo")
+   rawData =  urllib2.urlopen("http://aviationweather.gov/products/nws/all?fint=%s&lvl=lo"%(timeStr))
    listData = list()
    for idx,val in enumerate(rawData):
       if val=="000\n":
@@ -87,12 +87,12 @@ def GetWeather(timeStr="06"):
          match = re.match("(\d{2})(\d{2})([-+])?(\d{2})?",wether)
          if match:
             tmpWData = [0,0,0]
-            print
-            print match.group(0) #All
-            print match.group(1) # Heading
-            print match.group(2) # Speed
-            print match.group(3) # -/+
-            print match.group(4) # Temp
+            # print
+            # print match.group(0) #All
+            # print match.group(1) # Heading
+            # print match.group(2) # Speed
+            # print match.group(3) # -/+
+            # print match.group(4) # Temp
 
             if match.group(1) == "99":
                tmpWData[0] = 0
@@ -110,14 +110,12 @@ def GetWeather(timeStr="06"):
                tmpWData[2] = -int(match.group(4))
             elif match.group(3) == "+":
                tmpWData[2] = int(match.group(4))
-            print tmpWData
             aptData[indexApt][indexW] = tmpWData
       # Check out that indent dropoff!
       retVal[apt[0]] = apt[1:-1]
       # End for indexW,i in enumerate(apt):
    # End for indexApt,apt in enumerate(aptData):
-   print retVal
-   print len(retVal)
-   print retVal['DEN']
+   return retVal
 
-GetWeather()
+for i in GetWeather():
+   print i
