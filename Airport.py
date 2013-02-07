@@ -7,7 +7,11 @@ def GetWeather(timeStr="06"):
    Get the current ADDS weather, and return a dict of direction/speed/temp tuples. 
    Valid inputs for timeStr are 06, 12 and 24
    """
+   if type(timeStr)==type(int()) or type(timeStr)==type(float()):
+      timeStr = "%02d"%(timeStr)
 
+   if timeStr not in ["06","12","24"]:
+      assert(0),"Time must be 6, 12, or 24"
    retVal=dict()
 
    # Read data and prep for indexing
@@ -117,5 +121,8 @@ def GetWeather(timeStr="06"):
    # End for indexApt,apt in enumerate(aptData):
    return retVal
 
-for i in GetWeather():
-   print i
+data=GetWeather(6)
+for i in data:
+   print i,":",data[i]
+print data["ALTS"]
+print data["DEN"]

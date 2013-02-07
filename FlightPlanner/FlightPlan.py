@@ -40,12 +40,6 @@ class Airport:
       return self.ID
       pass
 
-def FindSiteNumber(airports,siteNumber):
-   for airport in airports:
-      if airport.SiteNumber == siteNumber:
-         return airport
-   assert(0),"Airport not found"
-
 class Runway:
    def __init__(self,csvLine):
       self.SiteNumber = csvLine[0]
@@ -57,6 +51,33 @@ class Runway:
       self.Length = int(csvLine[3])
       self.Width = int(csvLine[4])
       self.Surface = csvLine[5]
+
+class WeatherReport:
+   def __init__(self):
+      # Don't do anything on object creation (yet)
+      self.Forcast06 = None
+      self.Forcast12 = None
+      self.Forcast24 = None
+      pass
+
+   # Populate the current weather report
+   def Populate(self):
+      pass
+
+   # Get the winds at a given time
+   def WindsAtAirport(airport,altitude,time):
+      pass
+
+   def WindsAtLatLot(lat,lon,altitude,time):
+      pass
+
+
+
+def FindSiteNumber(airports,siteNumber):
+   for airport in airports:
+      if airport.SiteNumber == siteNumber:
+         return airport
+   assert(0),"Airport not found"
 """
    Code to find the column numbers for Airport and Runway objects
    with open('Runways.csv','r') as csvfile:
