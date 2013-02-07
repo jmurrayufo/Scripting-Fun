@@ -111,6 +111,17 @@ regPlayers.append(tmp)
 tmp = players("Mongo988",30,50,50,10,30)
 regPlayers.append(tmp)
 
+tmp = players("Unknown924",10,11,10,0,11)
+regPlayers.append(tmp)
+
+tmp = players("Strykerious",
+		10,
+		10,
+		10,
+		70,
+		50)
+regPlayers.append(tmp)
+
 # We are done with this varibale, delete it. We dont NEED to, its small, but its nice to do it anyway
 del tmp
 
