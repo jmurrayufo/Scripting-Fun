@@ -83,6 +83,7 @@ class WeatherReport:
             break
       else:
          assert(0),"Airport not found"
+         
       # Check to make sure found airport is in the Weather Report
       for weather in self.Forcast06:
          if weather == apt.ID:
@@ -110,6 +111,9 @@ class WeatherReport:
                   break
          # Now calculat the Averages and produce a fake weather report for that location
          sumDistList = distList[0][0]+distList[1][0]+distList[2][0]
+         for i in distList:
+            print self.Forcast06[i[1].ID]
+         self.CalcWindsAtAltitude(self.Forcast06[i[1].ID],0)
          # TODO: Find the target altitude %'s and then calculate out the result of the distList
       # Calculate wind/temp at that altitude for that time
       #TODO: Calculate this
@@ -236,12 +240,25 @@ class WeatherReport:
                elif match.group(3) == "+":
                   tmpWData[2] = int(match.group(4))
                aptData[indexApt][indexW] = tmpWData
-         # Check out that indent dropoff!
-         retVal1[apt[0]] = apt[1:-1]
+         retVal1[apt[0]] = apt[1:]
          # End for indexW,i in enumerate(apt):
       # End for indexApt,apt in enumerate(aptData):
-
       return retVal1,retVal2
+
+   def CalcWindsAtAltitude(self,windList,targetAltitude):
+      print "CalcWindsAtAltitude"
+      altitudeList = [3000,6000,9000,12000,18000,24000,30000,34000,39000]
+      print len(windList)
+      print windList
+      print len(altitudeList)
+      print altitudeList
+      time.sleep(1)
+      assert(len(windList)==len(altitudeList))
+      for idx,value in enumerate(altitudeList):
+         if idx==0 and targetAltitude<value:
+            print "<3K"
+         if value==altitudeList[-1] and targetAltitude>value:
+            print ">39000"
 
 
 def findSiteNumber(airports,siteNumber):
