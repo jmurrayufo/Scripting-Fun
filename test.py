@@ -1,8 +1,4 @@
+import datetime
 
-
-
-
-x = [0,1,2,3]
-
-print x
-print x[1:]
+print datetime
+print datetime.datetime.now()

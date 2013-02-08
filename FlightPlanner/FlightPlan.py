@@ -63,8 +63,10 @@ class WeatherReport:
       self.UseFor24 = None
       pass
 
-   # Populate the current weather report
    def Populate(self,airports):
+      """
+      Populate the current weather report
+      """
       self.Forcast06,self.UseFor06 = self.GetWeather(6)
       self.Forcast12,self.UseFor12 = self.GetWeather(12)
       self.Forcast24,self.UseFor24 = self.GetWeather(24)
@@ -73,10 +75,9 @@ class WeatherReport:
 
    # Get the winds at a given time
    def WindsAtAirport(self,airport,altitude,zulu):
-      # assert(type(airport)==type(str()))
-      # assert(type(altitude)==type(int()))
+      assert(type(airport)==type(str()))
+      assert(type(altitude) in [type(int()),type(float())])
       # assert(type(zulu)==type(datetime.datetime()))
-
       # Locate Airport in the Airports listing
       for apt in self.Airports:
          if apt.ID == airport:
@@ -87,16 +88,13 @@ class WeatherReport:
       # Check to make sure found airport is in the Weather Report
       for weather in self.Forcast06:
          if weather == apt.ID:
-            weatherResult = weather
-            print "Found it!"
-            break
+            return self.CalcWindsAtAltitude(self.Forcast06[apt.ID],altitude)
       # If it isn't find the three nearest airports and average to location
       else:
-         print "Triangulate"
          time.sleep(1)
-         distList = [(float('inf'),None),
-                     (float('inf'),None),
-                     (float('inf'),None)]
+         distList = [[float('inf'),None],
+                     [float('inf'),None],
+                     [float('inf'),None]]
          for station in self.Forcast06:
             for i in self.Airports:
                if station == i.ID:
@@ -110,15 +108,44 @@ class WeatherReport:
                   distList.pop()
                   break
          # Now calculat the Averages and produce a fake weather report for that location
-         sumDistList = distList[0][0]+distList[1][0]+distList[2][0]
-         for i in distList:
-            print self.Forcast06[i[1].ID]
-         self.CalcWindsAtAltitude(self.Forcast06[i[1].ID],0)
-         # TODO: Find the target altitude %'s and then calculate out the result of the distList
-      # Calculate wind/temp at that altitude for that time
-      #TODO: Calculate this
-      # Return
-      pass
+         windsList = list()
+         for idx,value in enumerate(distList):
+            windsList.append(self.CalcWindsAtAltitude(self.Forcast06[value[1].ID],altitude))
+         return self.WindTriangulator(distList,windsList)      
+      assert(0),"This point should never be reached"
+
+   def WindTriangulator(self,distanceList,windsList):
+      """
+      Takes distance and wind lists, and calculates the prediction in the cetner
+      """         
+      sumDistList = distanceList[0][0]+distanceList[1][0]+distanceList[2][0]
+      p0 = distanceList[0][0]/sumDistList
+      x0 = math.sin(windsList[0][0]/180.0*math.pi)*windsList[0][1]*p0
+      y0 = math.cos(windsList[0][0]/180.0*math.pi)*windsList[0][1]*p0
+      t0 = windsList[0][2]*p0
+
+      p1 = distanceList[1][0]/sumDistList
+      x1 = math.sin(windsList[1][0]/180.0*math.pi)*windsList[1][1]*p1
+      y1 = math.cos(windsList[1][0]/180.0*math.pi)*windsList[1][1]*p1
+      t1 = windsList[1][2]*p1
+
+      p2 = distanceList[2][0]/sumDistList
+      x2 = math.sin(windsList[2][0]/180.0*math.pi)*windsList[2][1]*p2
+      y2 = math.cos(windsList[2][0]/180.0*math.pi)*windsList[2][1]*p2 
+      t2 = windsList[2][2]*p2
+
+      x = x0+x1+x2
+      y = y0+y1+y2
+      t = t0+t1+t2
+      angle = math.atan(x/y)/math.pi*180.
+      if y<0:
+         angle =180+angle
+      elif xLower<0 and yLower>0:
+         angle =360+angle
+      m =  math.hypot(x,y)
+      return [angle,m,t]
+
+
 
    def WindsAtLatLot(self,lat,lon,altitude,time):
       pass
@@ -204,16 +231,16 @@ class WeatherReport:
 
       for indexApt,apt in enumerate(aptData):
          # Parse each airport found
-         for indexW,wether in enumerate(apt):
+         for indexW,weather in enumerate(apt):
             # Skip empties
-            if(wether==None):
+            if(weather==None):
                continue
             # Skip the name
-            if(len(wether)==3):
+            if(len(weather)==3):
                continue
             # Parse the data and store as a three part list
             # TODO: This could be another function
-            match = re.match("(\d{2})(\d{2})([-+])?(\d{2})?",wether)
+            match = re.match("(\d{2})(\d{2})([-+])?(\d{2})?",weather)
             if match:
                tmpWData = [0,0,0]
                # print
@@ -246,26 +273,45 @@ class WeatherReport:
       return retVal1,retVal2
 
    def CalcWindsAtAltitude(self,windList,targetAltitude):
-      print "CalcWindsAtAltitude"
       altitudeList = [3000,6000,9000,12000,18000,24000,30000,34000,39000]
-      print len(windList)
-      print windList
-      print len(altitudeList)
-      print altitudeList
-      time.sleep(1)
       assert(len(windList)==len(altitudeList))
+      assert(type(targetAltitude) in [type(int()),type(float())]),"targetAltitude must be int, or float"
       for idx,value in enumerate(altitudeList):
-         if idx==0 and targetAltitude<value:
-            print "<3K"
+         # Take care of edge conditions
+         if idx==0 and targetAltitude<=value and windList[idx]!=None:
+            return windList[0]
          if value==altitudeList[-1] and targetAltitude>value:
-            print ">39000"
+            return windList[-1]
+         if targetAltitude<=value and windList[idx-1] == None and windList[idx]!=None:
+            return windList[idx]
+         if targetAltitude <= value and windList[idx]!=None and windList[idx-1]!=None:
+            distanceRange =  float(altitudeList[idx]-altitudeList[idx-1])
+            # Calculate proprotions
+            lowerProp = (1-(targetAltitude-altitudeList[idx-1])/distanceRange)
+            upperProp = (1-(altitudeList[idx]-targetAltitude)/distanceRange)
+            # Break into x,y vectors
+            xLower = math.sin(windList[idx-1][0]/180.0*math.pi)*windList[idx-1][1]
+            yLower = math.cos(windList[idx-1][0]/180.0*math.pi)*windList[idx-1][1]
+            xUpper = math.sin(windList[idx][0]/180.0*math.pi)*windList[idx][1]
+            yUpper = math.cos(windList[idx][0]/180.0*math.pi)*windList[idx][1]
+            x=xLower * lowerProp + xUpper*upperProp
+            y=yLower * lowerProp + yUpper*upperProp
+            t = windList[idx-1][2] * lowerProp + windList[idx][2] * upperProp
+            angle = math.atan(x/y)/math.pi*180.
+            if y<0:
+               angle =180+angle
+            elif xLower<0 and yLower>0:
+               angle =360+angle
+            m =  math.hypot(x,y)
+            return [angle,m,t]
+
 
 
 def findSiteNumber(airports,siteNumber):
    for airport in airports:
       if airport.SiteNumber == siteNumber:
          return airport
-   assert(0),"Airport not found"
+   assert(0),"Airport not found=>%s"%(siteNumber)
 """
    Code to find the column numbers for Airport and Runway objects
    with open('Runways.csv','r') as csvfile:
@@ -349,7 +395,7 @@ def distance(origin, destination,units="nm"):
 # Slurp up Airport data
 Airports = list()
 # TODO: We need a full airports list for CO and its other local states, for longer flights
-with open('Facilities.csv','r') as csvfile:
+with open('FacilitiesBig.csv','r') as csvfile:
    csvreader = csv.reader(csvfile)
    csvreader.next() # Eat header
    # Place the airports into a list
@@ -370,4 +416,5 @@ with open('Runways.csv','r') as csvfile:
 tmp = WeatherReport()
 
 tmp.Populate(Airports)
-tmp.WindsAtAirport("LMO",None,None)
+print tmp.WindsAtAirport("LMO",9500,None)
+print tmp.WindsAtAirport("DEN",9500,None)
