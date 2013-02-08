@@ -1,4 +1,1 @@
-import datetime
-
-print datetime
-print datetime.datetime.now()
+print 24-7

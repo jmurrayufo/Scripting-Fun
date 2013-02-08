@@ -1,6 +1,7 @@
 import csv
 import urllib2
 import time
+import datetime # To calculate zulu location
 import re #To parse strings
 import math #Distance calculations
 
@@ -71,13 +72,17 @@ class WeatherReport:
       self.Forcast12,self.UseFor12 = self.GetWeather(12)
       self.Forcast24,self.UseFor24 = self.GetWeather(24)
       self.Airports=airports
-      pass
 
    # Get the winds at a given time
-   def WindsAtAirport(self,airport,altitude,zulu):
+   def WindsAtAirport(self,airport,altitude,locTime):
       assert(type(airport)==type(str()))
       assert(type(altitude) in [type(int()),type(float())])
-      # assert(type(zulu)==type(datetime.datetime()))
+      assert(type(locTime)==type(datetime.datetime.now()))
+
+      # Get correct forcast
+      forcastAtZulu = self.PickForcastAtZulu(locTime)
+
+
       # Locate Airport in the Airports listing
       for apt in self.Airports:
          if apt.ID == airport:
@@ -86,16 +91,16 @@ class WeatherReport:
          assert(0),"Airport not found"
          
       # Check to make sure found airport is in the Weather Report
-      for weather in self.Forcast06:
+      for weather in forcastAtZulu:
          if weather == apt.ID:
-            return self.CalcWindsAtAltitude(self.Forcast06[apt.ID],altitude)
+            return self.CalcWindsAtAltitude(forcastAtZulu[apt.ID],altitude)
       # If it isn't find the three nearest airports and average to location
       else:
          time.sleep(1)
          distList = [[float('inf'),None],
                      [float('inf'),None],
                      [float('inf'),None]]
-         for station in self.Forcast06:
+         for station in forcastAtZulu:
             for i in self.Airports:
                if station == i.ID:
                   station = i
@@ -110,9 +115,47 @@ class WeatherReport:
          # Now calculat the Averages and produce a fake weather report for that location
          windsList = list()
          for idx,value in enumerate(distList):
-            windsList.append(self.CalcWindsAtAltitude(self.Forcast06[value[1].ID],altitude))
+            windsList.append(self.CalcWindsAtAltitude(forcastAtZulu[value[1].ID],altitude))
          return self.WindTriangulator(distList,windsList)      
       assert(0),"This point should never be reached"
+
+   def PickForcastAtZulu(self,locTime):
+      z0=self.UseFor06['FOR USE']
+      z1=self.UseFor12['FOR USE']
+      z2=self.UseFor24['FOR USE']
+      t0=list()
+      t1=list()
+      t2=list()
+
+      t0.append(datetime.datetime.now().replace(hour=z0[0]/100,minute=0,second=0,microsecond=0) + datetime.timedelta(hours=-7))
+      t0.append(datetime.datetime.now().replace(hour=z0[1]/100,minute=0,second=0,microsecond=0) + datetime.timedelta(hours=-7))
+
+      t1.append(datetime.datetime.now().replace(hour=z1[0]/100,minute=0,second=0,microsecond=0) + datetime.timedelta(hours=-7))
+      t1.append(datetime.datetime.now().replace(hour=z1[1]/100,minute=0,second=0,microsecond=0) + datetime.timedelta(hours=-7))
+
+      t2.append(datetime.datetime.now().replace(hour=z2[0]/100,minute=0,second=0,microsecond=0) + datetime.timedelta(hours=-7))
+      t2.append(datetime.datetime.now().replace(hour=z2[1]/100,minute=0,second=0,microsecond=0) + datetime.timedelta(hours=-7))
+
+      while t0[1]<t0[0]:
+         t0[1]+=datetime.timedelta(days=1)
+      while t1[0]<t0[1]:
+         t1[0]+=datetime.timedelta(days=1)
+      while t1[1]<t1[0]:
+         t1[1]+=datetime.timedelta(days=1)
+      while t2[0]<t1[1]:
+         t2[0]+=datetime.timedelta(days=1)
+      while t2[1]<t2[0]:
+         t2[1]+=datetime.timedelta(days=1)
+
+      if t0[0] < locTime <= t0[1]:
+         return self.Forcast06      
+      elif t1[0] < locTime <= t1[1]:
+         return self.Forcast12
+      elif t2[0] < locTime <= t2[1]:
+         return self.Forcast24
+      else:
+         assert(0),"Time outside of prediction bounds!"
+
 
    def WindTriangulator(self,distanceList,windsList):
       """
@@ -411,10 +454,8 @@ with open('Runways.csv','r') as csvfile:
       tmpAirport.Runways.append(Runway(i))
 
 #Slurp up weather data
-# TODO: Add code for this
-
 tmp = WeatherReport()
-
 tmp.Populate(Airports)
-print tmp.WindsAtAirport("LMO",9500,None)
-print tmp.WindsAtAirport("DEN",9500,None)
+
+print tmp.WindsAtAirport("DEN",9000,datetime.datetime(2013,2,9,17))
+# print tmp.WindsAtAirport("DEN",9500,None)
