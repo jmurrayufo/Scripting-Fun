@@ -21,7 +21,6 @@ def PrintWhenDone(arg):
     for i in arg:
         if i == None:
             continue
-        # print i[-1]
         match = re.search("    Minimum = (\d+)ms, Maximum = (\d+)ms, Average = (\d+)ms",i[-1])
         if match:
             maxes.append(int(match.group(2)))
@@ -31,11 +30,10 @@ def PrintWhenDone(arg):
     print "Done"
 
 if __name__ == '__main__':
-    pool = Pool(processes=2)
+    pool = Pool(processes=32)
     serverList = list()
-    for i in range(1,21):
+    for i in range(1,256):
         serverList.append("66.150.148.%d -w 1000"%(i))
-    print len(serverList)
     assert(len(serverList)>0)
     tmp = pool.map_async(PingServer, serverList,callback=PrintWhenDone)  
     pool.close()

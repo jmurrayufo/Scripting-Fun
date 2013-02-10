@@ -28,7 +28,7 @@ class WGZone:
       Print2File("        flags: {\n",fileName)
       tmp = 0
       for i in self.flags:
-         Print2File("            %s:%s"%(i,self.flags[i]),fileName)
+         Print2File("            %s: %s"%(i,self.flags[i]),fileName)
          tmp+=1
          if(tmp<len(self.flags)):
             Print2File(",\n",fileName)
@@ -45,11 +45,11 @@ class WGZone:
          z: Z coord to base location from
          size: True dimensions of the square
       """
-      z=origin[0] + z*size + z*streetWidth
+      z=origin[0] + -z*size + -z*streetWidth
       x=origin[1] + x*size + x*streetWidth
 
       # TODO: This section could be shunk by several lines with some digital logic
-      self.zBounds = [-z-size,-z]
+      self.zBounds = [z-size,z]
       self.xBounds = [x,x + size]
    def SetFlag(self,flag,value):
       self.flags[flag]=value
@@ -100,7 +100,7 @@ for z in range(plotsNorth):
       tmp.SetName(areaName,z,x)
       tmp.SetFlag("greeting","Entering %s"%(tmp.name))
       tmp.SetFlag("farewell","Leaving %s"%(tmp.name))
-      tmp.Output("test.txt")
+      tmp.Output(fileName)
 
       """
       plotName = "%s%02d%02d"%(areaName,z,x)
