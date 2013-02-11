@@ -348,7 +348,6 @@ class WeatherReport:
             return [angle,m,t]
 
 
-
 def findSiteNumber(airports,siteNumber):
    for airport in airports:
       if airport.SiteNumber == siteNumber:
@@ -396,6 +395,7 @@ def distance(origin, destination,units="nm"):
    """
    # Haversine formula example in Python
    # Author: Wayne Dyck
+   # Parse out Lat and Lon depending on what they are
    if(type(origin)==type(Airport())):
       lat1 = origin.Latitude
       lon1 = origin.Longitude
@@ -417,7 +417,6 @@ def distance(origin, destination,units="nm"):
    else:
       assert(0),"Unsupported data type"
 
-
    dlat = math.radians(lat2-lat1)
    dlon = math.radians(lon2-lon1)
    a = math.sin(dlat/2) * math.sin(dlat/2) + math.cos(math.radians(lat1)) \
@@ -430,8 +429,25 @@ def distance(origin, destination,units="nm"):
    elif(units=="sm"):
       d = 3958.76 * c
 
-
    return d
+
+
+def HeadingFromTo(origin,destination):
+   assert( type(origin)==type(Airport()) )
+   assert( type(destination)==type(Airport()) )
+
+   y = destination.Latitude  - origin.Latitude
+   x = destination.Longitude - origin.Longitude
+   print x
+   print y
+   angle = math.atan(x/y)/math.pi*180.
+   if y<0:
+      angle =180+angle
+   elif x<0 and y>0:
+      angle =360+angle
+   return angle
+
+
 
 ## END TEST CODE SECTION
 # Slurp up Airport data
@@ -456,5 +472,15 @@ with open('Runways.csv','r') as csvfile:
 tmp = WeatherReport()
 tmp.Populate(Airports)
 
-print tmp.WindsAtAirport("LMO",9000,datetime.datetime(2013,2,11,12))
-# print tmp.WindsAtAirport("DEN",9500,None)
+# print tmp.WindsAtAirport("LMO",9000,datetime.datetime(2013,2,11,12))
+
+# Find LMO
+for i in Airports:
+   if i.ID=="LMO":
+      origin=i
+
+# Find DEN
+for i in Airports:
+   if i.ID=="FMM":
+      destination=i
+tmp= HeadingFromTo(origin,destination)

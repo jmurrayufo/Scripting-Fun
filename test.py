@@ -1,20 +1,22 @@
-import itertools
-from mpl_toolkits.mplot3d import Axes3D
-import matplotlib.pyplot as plt
 
-procs = [1,2,5,10,20,50]
-targets = [1,2,4,8,16,32,64,128,256]
 
-xData = list()
-yData = list()
-zData = list()
+class Foo:
+   def __init__(self,a,b,c):
+      self.a=a
+      self.b=b
+      self.c=c
+   def __str__(self):
+      return "%d,%d,%d"%(self.a,self.b,self.c)
+   def __repr__(self):
+      return "%d,%d,%d"%(self.a,self.b,self.c)
 
-for p,t in itertools.product(procs,targets):
-    xData.append(p)
-    yData.append(t)
-    zData.append(p*t)
+x = list()
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.scatter(xData,yData,zData)
-plt.show()
+x.append(Foo(1,2,3))
+x.append(Foo(2,5,8))
+x.append(Foo(3,6,9))
+x.append(Foo(4,7,10))
+
+for i in x:
+   if i.a==1:
+      print i
