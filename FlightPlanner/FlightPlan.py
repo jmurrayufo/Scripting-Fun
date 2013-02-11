@@ -96,7 +96,6 @@ class WeatherReport:
             return self.CalcWindsAtAltitude(forcastAtZulu[apt.ID],altitude)
       # If it isn't find the three nearest airports and average to location
       else:
-         time.sleep(1)
          distList = [[float('inf'),None],
                      [float('inf'),None],
                      [float('inf'),None]]
@@ -457,5 +456,5 @@ with open('Runways.csv','r') as csvfile:
 tmp = WeatherReport()
 tmp.Populate(Airports)
 
-print tmp.WindsAtAirport("DEN",9000,datetime.datetime(2013,2,9,17))
+print tmp.WindsAtAirport("LMO",9000,datetime.datetime(2013,2,11,12))
 # print tmp.WindsAtAirport("DEN",9500,None)
