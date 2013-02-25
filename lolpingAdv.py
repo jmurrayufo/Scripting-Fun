@@ -33,8 +33,8 @@ if __name__ == '__main__':
     pool = Pool(processes=32)
     serverList = list()
     for i in range(1,256):
-        serverList.append("66.150.148.%d -w 1000"%(i))
+        serverList.append("66.150.148.%d -w 500"%(i))
     assert(len(serverList)>0)
-    tmp = pool.map_async(PingServer, serverList,callback=PrintWhenDone)  
+    tmp = pool.map_async(PingServer, serverList,callback=PrintWhenDone)
     pool.close()
     pool.join()
