@@ -10,12 +10,15 @@ data.append((time.time(),int(foo)))
 
 while(1):
     foo=raw_input("Value: ")
-    if(foo == "-1"):
+    if(foo in ["-1","-","z"]):
         print "Delete last entry!"
         data.pop()
         continue
-    if(foo == ""):
+    elif(foo == ""):
         print "Got Empty!"
+    elif(foo in ["?","h","-h","help"]):
+        print "Enter gold amount!"
+        print "Use -1 or - to delete the last entry."
     else:
         try: 
             data.append((time.time(),int(foo)))
