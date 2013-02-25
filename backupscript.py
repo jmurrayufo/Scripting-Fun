@@ -1,13 +1,14 @@
 import os
 import re
 import shutil
+import os.path
 
 TO = []
 FROM = []
 
 def lstapp(lst, path):
-    for folders in os.listdir(path):
-        if isafolder(folders) == "Yes":
+    for folders in listdir(path):
+        if isafolder(folders) == True:
             newpath = pathapp(folders, path)
             if lst == "TO":
                 TO.append(newpath)
@@ -15,21 +16,21 @@ def lstapp(lst, path):
                 FROM.append(newpath)
 
 def compfunc (pathA, pathB):
-    A = set(os.listdir(pathA))
-    B = set(os.listdir(pathB))
+    A = set(listdir(pathA))
+    B = set(listdir(pathB))
     C = set()
     if A.intersection(B) > C:
-        return "similar"
+        return True
     else:
-        return "not"
+        return False
 
 def diffunc(pathA, pathB):
-    A = set(os.listdir(pathA))
-    B = set(os.listdir(pathB))
+    A = set(pathA)
+    B = set(pathB)
     return A - B
 
 def fromiter(FROM, TO):
-    if compfunc(FROM, TO) == "similar":
+    if compfunc(FROM, TO) == True:
         copyfunc(FROM, TO)
         lstapp("FROM", FROM)
     else:
@@ -38,20 +39,23 @@ def fromiter(FROM, TO):
 
 def isafolder(qry):
     find = re.search(r"\.\w{2,4}$",qry)
-    if find == None:
-        return "Yes"
+    if os.path.isdir(qry) == True and os.path.islink(qry) == False:
+        return True
     else:
-        return "No"
+        return False
 
 copyticker = 0            
 copylist = []
+
 def copyfunc(cpyfrm, cpyto):
-    FROM = os.listdir(cpyfrm)
-    TO = os.listdir(cpyto)
-    for items in diffunc(FROM, TO):
+    FROMC = listdir(cpyfrm)
+    TOC = listdir(cpyto)
+    copyticker = 0
+    for items in diffunc(FROMC, TOC):
         newcpy = pathapp(items, cpyfrm)
-        if isafolder(items) == "Yes":
-            shutil.copytree(newcpy, cpyto)
+        if isafolder(newcpy) == True:
+            newto = pathapp(items, cpyto)
+            shutil.copytree(newcpy, newto)
             copyticker += 1
             copylist.append(newcpy)
         else:
@@ -73,6 +77,9 @@ def wrapup():
     print copyticker
     print copylist
 
+def listdir(path):
+    return os.listdir(path)
+
 while(1):
     FROMpath = raw_input("place you want to back up FROM?")
     TOpath = raw_input("place you want to back up TO?")
@@ -81,4 +88,3 @@ while(1):
     FROM.append(FROMpath)
 
     wrapup()
-    
