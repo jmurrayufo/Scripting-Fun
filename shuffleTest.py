@@ -57,17 +57,35 @@ def StacksShuffle(deck,stacks,runs):
          newDeck+=i
    return newDeck
 
+def TestForGoodHand(deck,minMana,maxMana):
+   mCount = 0
+   for i in range(8):
+      if deck[i]=='m':
+         mCount+=1
+   if minMana > mCount or mCount > maxMana:
+      return False
+   else:
+      return True
 
-def NewDeck(cards):
-   return list(range(1,cards+1))
+def NewDeck(cards,pMana=33,pCards=66):
+   pTotal = float(pMana+pCards)
+   pMana = pMana/pTotal
+   pCards = pCards/pTotal
+   tmp = list()
+   for i in range(int(cards*pMana)):
+      tmp.append("m")
+   for i in range(int(cards*pCards)):
+      tmp.append("c")
+   if len(tmp) < cards:
+      tmp.append("c")
+   return tmp
 
-deck = NewDeck(40)
+
 
 results = list()
-for i in range(10000):
-   deck = NewDeck(40)
-   deck = StacksShuffle(deck,7,2)
-   results.append( deck.index(1) )
-print sum(results)/float(len(results))
-for i in range(1,40):
-   print i,results.count(i)/float(len(results))*100
+for i in range(500):
+   deck = NewDeck(40,2,3)
+   deck = StacksShuffle(deck,5,3)
+   results.append( TestForGoodHand(deck,3,5) )
+print results.count(True)/float(len(results))*100
+print results.count(False)/float(len(results))*100
