@@ -27,8 +27,9 @@ def calcNextSigDate(x,div=1):
    start = x
    now = datetime.datetime.now().replace(microsecond=0)
    dTime = int((now-start).total_seconds())
+   then = start + datetime.timedelta(seconds=calcNextSigNumber(dTime/div)*div)
 
-   retX = calcNextSigNumber(dTime/div)-dTime/div
+   retX = (then-now).total_seconds()
    retY = start + datetime.timedelta(seconds=calcNextSigNumber(dTime/div)*div)
    retZ = calcNextSigNumber(dTime/div)
 
@@ -45,20 +46,20 @@ print "Total Seconds:",total_seconds
 print "Total Days:",total_seconds/86400
 print "Total Weeks:",total_seconds/604800
 print "Total Months:",total_seconds/int(2.63e+6)
-print "Total Years:",total_seconds/int(3.156e7)
+print "Total Years:",total_seconds/int(3.154e7)
 
 x,y,z=calcNextSigDate(start,1)
 print "Next Anv is in %d seconds, on %s and will be %d seconds"%(x,y,z)
 
 x,y,z=calcNextSigDate(start,86400)
-print "Next Anv is in %d days, on %s and will be %d days"%(x,y,z)
+print "Next Anv is in %d seconds, on %s and will be %d days"%(x,y,z)
 
 x,y,z=calcNextSigDate(start,604800)
-print "Next Anv is in %d weeks, on %s and will be %d weeks"%(x,y,z)
+print "Next Anv is in %d seconds, on %s and will be %d weeks"%(x,y,z)
 
-x,y,z=calcNextSigDate(start,int(2.63e+6))
-print "Next Anv is in %d months, on %s and will be %d months"%(x,y,z)
+x,y,z=calcNextSigDate(start,2592000)
+print "Next Anv is in %d seconds, on %s and will be %d months"%(x,y,z)
 
-x,y,z=calcNextSigDate(start,int(3.156e7))
-print "Next Anv is in %d years, on %s and will be %d years"%(x,y,z)
+x,y,z=calcNextSigDate(start,31557600)
+print "Next Anv is in %d seconds, on %s and will be %d years"%(x,y,z)
 # print calcNextSigNumber((now-start).total_seconds())-(now-start).total_seconds()

@@ -1,22 +1,23 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
+fig = plt.figure()
 
-class Foo:
-   def __init__(self,a,b,c):
-      self.a=a
-      self.b=b
-      self.c=c
-   def __str__(self):
-      return "%d,%d,%d"%(self.a,self.b,self.c)
-   def __repr__(self):
-      return "%d,%d,%d"%(self.a,self.b,self.c)
+def f(x, y):
+    return np.sin(x) + np.cos(y)
 
-x = list()
+x = np.linspace(0, 2 * np.pi, 120)
+y = np.linspace(0, 2 * np.pi, 100).reshape(-1, 1)
 
-x.append(Foo(1,2,3))
-x.append(Foo(2,5,8))
-x.append(Foo(3,6,9))
-x.append(Foo(4,7,10))
+im = plt.imshow(f(x, y), cmap=plt.get_cmap('jet'))
 
-for i in x:
-   if i.a==1:
-      print i
+def updatefig(*args):
+    global x,y
+    x += np.pi / 15.
+    y += np.pi / 20.
+    im.set_array(f(x,y))
+    return im,
+
+ani = animation.FuncAnimation(fig, updatefig, interval=50, blit=True)
+plt.show()
