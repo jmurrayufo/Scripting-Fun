@@ -22,23 +22,25 @@ def MandlePoint(c,n):
    for i in range(n):
       z = z**2 + c
       if abs(z) > 2:
-         return False
-   return True
+        return i
+   return 0
 
 def onSize(event):
-   print ax.get_xlim()
-   print ax.get_ylim()
+   pass
+   # print ax.get_xlim()
+   # print ax.get_ylim()
 
 xmin, xmax = -2, 1
 ymin, ymax = -1, 1
 steps = 1000
-interations = 10
+interations = 30
 
-image = np.ndarray( (steps,steps), dtype= np.uint8 )
+image = np.ndarray( (steps,steps), dtype= np.uint16 )
 
 for idxr,r in enumerate( np.linspace( xmin, xmax, steps ) ):
    for idxi,i in enumerate( np.linspace( ymin, ymax, steps) ):
       image[ idxi, idxr ] = MandlePoint( complex(r,i), interations )
+
 
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
