@@ -1,23 +1,11 @@
-import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+
+x = [1,2,3]
+y = [5,6,7]
 
 fig = plt.figure()
+plt.plot(x, y)
 
-def f(x, y):
-    return np.sin(x) + np.cos(y)
+plt.show(block=False)
 
-x = np.linspace(0, 2 * np.pi, 120)
-y = np.linspace(0, 2 * np.pi, 100).reshape(-1, 1)
-
-im = plt.imshow(f(x, y), cmap=plt.get_cmap('jet'))
-
-def updatefig(*args):
-    global x,y
-    x += np.pi / 15.
-    y += np.pi / 20.
-    im.set_array(f(x,y))
-    return im,
-
-ani = animation.FuncAnimation(fig, updatefig, interval=50, blit=True)
-plt.show()
+raw_input(":")
