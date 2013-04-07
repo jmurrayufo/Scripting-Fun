@@ -1,11 +1,4 @@
-import matplotlib.pyplot as plt
+import diceprob
 
-x = [1,2,3]
-y = [5,6,7]
-
-fig = plt.figure()
-plt.plot(x, y)
-
-plt.show(block=False)
-
-raw_input(":")
+print 8/5.
+print 4//5.
