@@ -53,8 +53,3 @@ def Fs(s,n,k):
     for i in range( nmin, nmax+1 ):
         sum+=F(s,n,i)
     return sum
-
-# print Fs(10,2,1)
-for i in range(1,20+1):
-    print "%2d: %2.0f%%"%(i,F(10,2,i)*100)
-
