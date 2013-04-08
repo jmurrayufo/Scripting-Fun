@@ -2,6 +2,7 @@ import numpy as np
 import time
 import random
 import re
+import datetime
 from math import floor
 
 def choose(n, k):
@@ -20,9 +21,10 @@ def choose(n, k):
         return 0
 
 def F(s,n,k):
-
+    """
+    Calculate the likely hood of a result of k given n dice with s sides. 
+    """
     sumation = 0
-
     for i in range(0,  1+int( floor( ( k - n ) / float( s ) ) ) ):
         sumation += (-1)**i * choose( n, i ) * choose(k - s*i - 1, n - 1)
     try:
@@ -37,6 +39,8 @@ def Fs(s,n,k):
     Print the cumulative sumation of a result from n to k. This is the %% chance to get a 
     result of k or less
     """
+    # Catch any overflows gracefully, and tell the user. This might need to be changed for
+    #   true library deployment. 
     try:
         float(s**n)
     except OverflowError:
@@ -71,6 +75,17 @@ def diceeval(inStr="1d20"):
         match = re.search( matchInt, inStr )
     return eval(inStr)
 
+def diePrompt():
+    oldStr = ""
+    while(1):
+        diceStr = raw_input("\n>")
+        print datetime.datetime.fromtimestamp( time.time() ).strftime('%Y-%m-%d %I:%M:%S')
+        if( not len( diceStr ) ):
+            print "r:",oldStr
+            diceStr = oldStr
+        else:
+            print "d:",diceStr
+        oldStr = diceStr
+        print diceeval(diceStr)
 
-
-print diceeval("1+2+3+4+5")
+diePrompt()
