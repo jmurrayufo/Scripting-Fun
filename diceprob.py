@@ -1,5 +1,7 @@
 import numpy as np
 import time
+import random
+import re
 from math import floor
 
 def choose(n, k):
@@ -19,16 +21,10 @@ def choose(n, k):
 
 def F(s,n,k):
 
-    # print 1+int( floor( ( k - n ) / float( s ) ) ) 
     sumation = 0
 
     for i in range(0,  1+int( floor( ( k - n ) / float( s ) ) ) ):
         sumation += (-1)**i * choose( n, i ) * choose(k - s*i - 1, n - 1)
-        # print "Sum for",i
-        # print (-1)**i
-        # print choose( n, i )
-        # print choose(k - s*i - 1, n - 1)
-        # print sumation
     try:
         return sumation / float(s**n)
     except OverflowError:
@@ -53,3 +49,28 @@ def Fs(s,n,k):
     for i in range( nmin, nmax+1 ):
         sum+=F(s,n,i)
     return sum
+
+def dieroll(dice,sides):
+    """
+    Return a random result for the given number of dice with the given number of sides.
+    """
+    tmp = [random.randint(1,sides) for i in range(dice)]
+    return sum(tmp),tmp
+
+def diceeval(inStr="1d20"):
+    """
+    Evaluate a given basic math and dice string with python math notation. Currently dice 
+    must be in the form of nDs where n is the number of dice, and s is the number of sides
+    on each die. All dice rolls are evaluated before any math is evaluated.
+    """
+    matchInt = "((\d+)d(\d+))"
+    match = re.search( matchInt, inStr )
+    while( match ):
+        dice = dieroll( int( match.group(2) ), int( match.group(3) ) )[0]
+        inStr = re.sub( matchInt, str( dice ), inStr, count=1)
+        match = re.search( matchInt, inStr )
+    return eval(inStr)
+
+
+
+print diceeval("1+2+3+4+5")
