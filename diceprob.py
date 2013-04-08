@@ -76,7 +76,8 @@ def diceeval(inStr="1d20"):
     return eval(inStr)
 
 def diePrompt():
-    oldStr = ""
+    #preload it with something useful
+    oldStr = "1d20"
     while(1):
         diceStr = raw_input("\n>")
         print datetime.datetime.fromtimestamp( time.time() ).strftime('%Y-%m-%d %I:%M:%S')
