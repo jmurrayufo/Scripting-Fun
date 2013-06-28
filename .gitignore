@@ -38,3 +38,5 @@ nosetests.xml
 
 # Bulk Data
 *.csv
+
+test.py
