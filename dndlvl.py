@@ -15,6 +15,4 @@ testXPs = [0,1e3,3e3,6e3,
             190e3]
 
 for i in testXPs:
-    print XP2Level(i)
-
-print range(1,21)
+    print i,XP2Level(i)
