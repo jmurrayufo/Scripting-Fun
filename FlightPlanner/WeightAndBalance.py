@@ -30,6 +30,8 @@ def Gal2Lbs( gallons, temperature=15 ):
 def Lbs2Gal( Lbs, temperature=15 ):
    return Lbs / (temperature * -0.0065 + 6.1348)
 
+def Num2Str( value ):
+   return "{:,}".format( int( value ) )
 
 
 # CLASSES
@@ -93,6 +95,12 @@ class Plane():
       self.Moments['Baggage'] = Weight(0,0)
       self.Moments['Plane']   = Weight(0,0)
       self.LoadZonePoly = []
+      self.UtilityZonePoly = []
+      self.DepartAltitude = 5673
+      self.TOGroundRoll = None
+      self.TO50ftObs = None
+      self.STDTemperature =  15 - 2 * self.DepartAltitude / 1000.0
+      self.Temperature = self.STDTemperature
 
    
    def __str__( self ):
@@ -117,7 +125,7 @@ class Plane():
       print "      Plane:",self.Moments['Plane']
       print "           ="
       print "      Total: %s"%( self.GetTotalMoment().__str__() )
-      print "  GC: %.2f"%( self.GetTotalMoment().Arm )
+      print "                   GC: %.2f (in)"%( self.GetTotalMoment().Arm )
       if( len( self.LoadZonePoly ) ):
          print "     Load Limits Good:",PointInPoly(
                                              self.GetTotalMoment().Arm,
@@ -130,6 +138,17 @@ class Plane():
                                              self.GetTotalMoment().Weight,
                                              self.UtilityZonePoly
                                              )
+      print "        Departure Altitude:",self.DepartAltitude
+      print "     Departure Temperature:",self.Temperature
+      print "           STD Temperature:",self.STDTemperature
+      tempAdjustment = 1+.1*( (self.Temperature - self.STDTemperature) / 13. )
+      print "  TO Distances Adjusted By: %.1f%%"%( ( tempAdjustment - 1 ) * 100 )
+      if( self.TOGroundRoll ):
+         x = self.DepartAltitude
+         print "      Take-Off Ground Roll: %s (ft)"%( Num2Str( eval( self.TOGroundRoll ) * tempAdjustment ) )
+      if( self.TO50ftObs ):
+         x = self.DepartAltitude
+         print "    Take-Off 50ft Obstacle: %s (ft)"%( Num2Str( eval( self.TO50ftObs ) * tempAdjustment ) )
 
    
    def GetTotalMoment( self ):
@@ -138,6 +157,12 @@ class Plane():
    
    def PromptSetMoments( self ):
 
+      print "What is your departure Altitude?"
+      self.DepartAltitude = GetFloat(">",5500.0)
+
+      print "What is the Ambient Air Temperature (in C)?"
+      self.Temperature = GetFloat( ">", self.STDTemperature )
+ 
       print "What is your pilots weight?"
       self.Moments['Front L'].Weight = GetFloat(">",210)
       self.Moments['Front L'].Calc()
@@ -178,6 +203,8 @@ class Plane():
       self.Moments['Plane']   = Weight( tmp[0], tmp[1] )
       self.LoadZonePoly = data['LoadZonePoly']
       self.UtilityZonePoly = data['UtilityZonePoly']
+      self.TOGroundRoll = data['Formula']['TOGroundRoll']
+      self.TO50ftObs = data['Formula']['TO50ftObs']
 
    def Plot( self ):
       import numpy as np
@@ -190,8 +217,8 @@ class Plane():
       maxes = vertsLoad.max(0)
       mins  = vertsLoad.min(0)
 
-      ax.add_patch( Polygon( vertsLoad, facecolor='grey', lw=2) )
-      ax.add_patch( Polygon( vertsUtility, facecolor='yellow', lw=2) )
+      ax.add_patch( Polygon( vertsLoad, facecolor='LightGreen', lw=2) )
+      ax.add_patch( Polygon( vertsUtility, facecolor='LimeGreen', lw=2) )
       
       plt.plot( 
          self.GetTotalMoment().Arm, 
@@ -220,4 +247,4 @@ x = Plane()
 x.LoadJson("data/N13453.json")
 x.PromptSetMoments()
 x.PrintDetailed()
-x.Plot()
+# x.Plot()

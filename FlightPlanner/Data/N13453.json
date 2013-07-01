@@ -25,7 +25,7 @@
                ],
    "Formula":{
       "Notes":"x is the altitude of the airport",
-      "TOGroundRun":"858.39*2.718**(8e-5*x)",
+      "TOGroundRoll":"858.39*2.718**(8e-5*x)",
       "TO50ftObs":"6.61E-09*x**3 - 3.48E-05*x**2 + 2.00E-01*x + 1.52E+03"
    }
 }
