@@ -1,7 +1,7 @@
 import itertools
 import time # testing delays
 import re
-import random # Has some handy funcitons
+import random # Has some handy functions
 
 class players:
 	def __init__(self,N="None",A=0,M=0,T=0,J=0,S=0):
